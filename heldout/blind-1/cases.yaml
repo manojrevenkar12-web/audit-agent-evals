@@ -1,0 +1,1162 @@
+# Held-out set blind-1. Written from docs/EVAL_METHOD.md, heldout/WRITING_CASES.md, the package PDFs and the
+# truth files only (no code was read). Findings are in the order an agent would return them, grouped by package.
+# Section numbers in `why` refer to docs/EVAL_METHOD.md.
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7000 (digital). d1 narrative (appropriation 3.443), d2 missing employees, d3 casting Summe Passiva cy.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7000
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Summe Passiva"
+    column: "31.12.2026 TEUR"
+    found_value: "21.760"
+    expected_value: "27.160"
+    explanation: "Eigenkapital 13.671 + Rückstellungen 1.629 + Verbindlichkeiten 11.830 + RAP 31 = 27.161; Summe Aktiva is 27.160. The printed 21.760 looks like a transposition."
+    confidence: 0.95
+  expect:
+    verdict: hit
+    defect: heldout-7000.d3
+  why: "§4 step 2: exact label and exact header give bs.total.liabilities:cy, the changed cell of d3; casting is acceptable; first finding for d3."
+
+- package: heldout-7000
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "Die Eigenkapitalquote beträgt zum Stichtag 50,3 %"
+    expected_value: "62,8 %"
+    explanation: "Equity 13.671 divided by the printed balance sheet total 21.760 gives 62,8 %, not 50,3 %."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7000.d3
+  why: "§4 step 4 with no found_value: the claim sharing at least half its words with the quote is claim.equity_ratio, an acceptable location of d3 (a symptom, §7) with narrative acceptable; d3 already found by the previous finding."
+
+- package: heldout-7000
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    quote: "Summe Passiva"
+    found_value: "21.760"
+    expected_value: "27.161"
+    explanation: "The liabilities side does not add up to its total."
+    confidence: 0.8
+  expect:
+    verdict: duplicate
+    defect: heldout-7000.d3
+  why: "No row label, so §4 step 2 does not apply; step 3 finds no heading on page 3 equal to or containing 'Summe Passiva'; step 4 finds no claim with 21.760; step 5 finds exactly one cell on page 3 showing 21.760 (bs.total.liabilities:cy). Assumes the steps fall through when one finds nothing."
+
+- package: heldout-7000
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Summe Passiva"
+    column: "31.12.2025 TEUR"
+    found_value: "29.316"
+    expected_value: "29.361"
+    explanation: "Prior-year liabilities appear not to add up (reviewer mis-added: 10.328 + 2.715 + 16.261 + 12 = 29.316)."
+    confidence: 0.4
+  expect:
+    verdict: false_alarm
+  why: "Right row, wrong column: bs.total.liabilities:py is no acceptable location of any error, not the decoy and not a rounding difference, so §5 'anything else'."
+
+- package: heldout-7000
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 4
+    row_label: "Jahresüberschuss"
+    column: "2026"
+    found_value: "3.343"
+    expected_value: "3.443"
+    explanation: "The net income in the income statement does not tie to the 3.443 TEUR named in the appropriation proposal in the notes."
+    confidence: 0.7
+  expect:
+    verdict: mistyped
+    defect: heldout-7000.d1
+  why: "Label 'Jahresüberschuss' equals guv.17 (page 4) and bs.P.A.V (page 3); page 4 narrows to guv.17; bare year 2026 shared with '2026 TEUR' gives guv.17:cy, an acceptable location of d1, but d1 accepts only narrative, so mistyped (§5)."
+
+- package: heldout-7000
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 7
+    quote: "den Jahresüberschuss von 3.443 TEUR auf neue Rechnung vorzutragen"
+    found_value: "3.443 TEUR"
+    expected_value: "3.343 TEUR"
+    explanation: "The appropriation proposal names 3.443 TEUR; the income statement shows a net income of 3.343 TEUR."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7000.d1
+  why: "§4 step 4: ignoring the trailing TEUR, only claim.appropriation contains 3.443; acceptable with narrative; the earlier mistyped finding did not find d1, so this is the hit."
+
+- package: heldout-7000
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Angabe der durchschnittlichen Zahl der Arbeitnehmer (§ 285 Nr. 7 HGB)"
+    explanation: "The notes do not state the average number of employees during the year."
+    confidence: 0.85
+  expect:
+    verdict: hit
+    defect: heldout-7000.d2
+  why: "§4 step 1: 'Arbeitnehmer' in the quote names the employees disclosure, the acceptable location of d2."
+
+- package: heldout-7000
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Anlagenspiegel"
+    explanation: "No fixed-asset schedule found in the notes."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "§4 step 1 locates disclosure:fixed_asset_schedule, which exists in this package and is no acceptable location of any error; it resolves to a location, so false_alarm rather than unlocated."
+
+- package: heldout-7000
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Umlaufvermögen"
+    column: "2026"
+    found_value: "9.701"
+    expected_value: "9.700"
+    explanation: "Vorräte 3.721 + Forderungen 4.072 + Kasse 1.907 = 9.700, printed 9.701."
+    confidence: 0.5
+  expect:
+    verdict: rounding
+  why: "Label without numbering equals 'B. Umlaufvermögen'; year 2026 gives bs.B:cy, a listed rounding difference (1 TEUR over 3 lines, within ⌊(3+1)/2⌋) and no error location."
+
+- package: heldout-7000
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Technische Anlagen und Maschinen"
+    column: "Kum. AfA"
+    found_value: "9.405"
+    expected_value: "9.404"
+    explanation: "Accumulated depreciation 8.372 + 1.434 - 402 = 9.404, schedule shows 9.405."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "Label matches anl.tech (page 6) and bs.A.II.2 (page 2); page 6 narrows; no exact or year match, so headers containing 'Kum. AfA' give dep_open and dep_close; dep_close is a listed rounding difference, neither is an error or decoy location. Assumes a finding resolving to several locations 'points at' each of them."
+
+- package: heldout-7000
+  finding:
+    type: period
+    document: jahresabschluss_2026.pdf
+    page: 5
+    quote: "Anhang für das Geschäftsjahr 2026"
+    explanation: "Heading of the notes looks inconsistent with the cover."
+    confidence: 0.2
+  expect:
+    verdict: false_alarm
+  why: "§4 step 3: the heading on page 5 equal to the quote is heading:anhang.title, which is no location of any error (no period error seeded here)."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7001 (this year's report scanned). d1 missing fixed-asset schedule.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7001
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Anlagenspiegel"
+    quote: "3. Anlagevermögen"
+    explanation: "Section 3 of the notes has a heading but no schedule of changes in fixed assets (§ 284 Abs. 3 HGB)."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7001.d1
+  why: "§4 step 1 runs before the cell step: 'Anlagenspiegel' in the row label names fixed_asset_schedule, the acceptable location of d1."
+
+- package: heldout-7001
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "The fixed asset schedule (statement of changes in fixed assets) is missing from the notes"
+    explanation: "Required by § 284 Abs. 3 HGB."
+    confidence: 0.8
+  expect:
+    verdict: duplicate
+    defect: heldout-7001.d1
+  why: "§4 step 1 says German or English names are matched; a careful reader expects 'fixed asset schedule' to name fixed_asset_schedule (OPEN: the English term is not among the examples in §4, the full list is in config). Second finding for d1, so duplicate."
+
+- package: heldout-7001
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 7
+    row_label: "Summe"
+    column: "Gesamt"
+    found_value: "32.420"
+    expected_value: "32.421"
+    explanation: "Verbindlichkeitenspiegel: 22.217 + 6.940 + 3.264 = 32.421."
+    confidence: 0.5
+  expect:
+    verdict: rounding
+  why: "'Summe' on page 7 is vbl.sum; exact header 'Gesamt' gives vbl.sum:total, a listed rounding difference and no error location."
+
+- package: heldout-7001
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Summe Aktiva"
+    column: "31.12.2026 TEUR"
+    found_value: "82.140"
+    expected_value: "82.050"
+    explanation: "Anlagevermögen 48.752 + Umlaufvermögen 32.892 + RAP 406 = 82.050 (reviewer misread 32.982 on the scan)."
+    confidence: 0.5
+  expect:
+    verdict: false_alarm
+  why: "bs.total.assets:cy adds up exactly (48.752 + 32.982 + 406) and is neither an error, decoy nor rounding location."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7002 (scanned). d1 prior_year RAP Passiva comparative 258 vs 215; d2 casting bs.B.II cy 23.270.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7002
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Rechnungsabgrenzungsposten"
+    column: "31.12.2025 TEUR"
+    found_value: "258"
+    expected_value: "215"
+    explanation: "The comparative for passive deferred income is 258, last year's published balance sheet shows 215."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7002.d1
+  why: "Label equals both 'C. Rechnungsabgrenzungsposten' (page 2) and 'D. Rechnungsabgrenzungsposten' (page 3); page 3 narrows to bs.P.D; exact header gives bs.P.D:py, the changed cell of d1."
+
+- package: heldout-7002
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Summe Aktiva"
+    column: "2025"
+    found_value: "135.491"
+    expected_value: "135.534"
+    explanation: "Prior-year total assets 135.491 do not equal prior-year total equity and liabilities 135.534."
+    confidence: 0.7
+  expect:
+    verdict: duplicate
+    defect: heldout-7002.d1
+  why: "Bare year 2025 shared with '31.12.2025 TEUR' gives bs.total.assets:py, an acceptable location of d1 (the balance check it breaks), with tie acceptable; d1 already found."
+
+- package: heldout-7002
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Summe Passiva"
+    column: "31.12.2025 TEUR"
+    found_value: "135.534"
+    expected_value: "135.491"
+    explanation: "Prior-year Summe Passiva does not add up to the balance sheet total."
+    confidence: 0.6
+  expect:
+    verdict: mistyped
+    defect: heldout-7002.d1
+  why: "bs.total.liabilities:py is an acceptable location of d1, but d1 accepts prior_year and tie only, not casting (§5 mistyped)."
+
+- package: heldout-7002
+  finding:
+    type: prior_year
+    document: jahresabschluss_2025.pdf
+    page: 2
+    row_label: "Rechnungsabgrenzungsposten"
+    column: "31.12.2025 TEUR"
+    found_value: "215"
+    expected_value: "258"
+    explanation: "Last year's report shows passive deferred income of 215; this year's comparative says 258."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7002.d1
+  why: "Finding on the prior-year report: on its page 2 the label matches both the Aktiva and the Passiva RAP rows; the exact header keeps both cells, one of which (prior_bs_liabilities:bs.P.D:cy) is an acceptable location of d1; d1 already found."
+
+- package: heldout-7002
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Forderungen und sonstige Vermögensgegenstände"
+    column: "2026"
+    found_value: "23.270"
+    expected_value: "23.280"
+    explanation: "21.466 + 1.814 = 23.280; subtotal printed as 23.270."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7002.d2
+  why: "Label without 'II.' equals bs.B.II; year 2026 picks the cy cell (the prior-year report's identical label has no 2026 column); the changed cell of d2, casting acceptable."
+
+- package: heldout-7002
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    found_value: "23.270"
+    expected_value: "23.280"
+    explanation: "One of the receivables subtotals on the balance sheet does not add up."
+    confidence: 0.5
+  expect:
+    verdict: duplicate
+    defect: heldout-7002.d2
+  why: "No row label or quote; no claim contains 23.270; §4 step 5: exactly one cell on page 2 shows 23.270 (bs.B.II:cy); d2 already found."
+
+- package: heldout-7002
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Umlaufvermögen"
+    column: "31.12.2026 TEUR"
+    found_value: "50.552"
+    expected_value: "50.542"
+    explanation: "Umlaufvermögen does not reconcile with Vorräte, Forderungen and Kasse as printed."
+    confidence: 0.5
+  expect:
+    verdict: mistyped
+    defect: heldout-7002.d2
+  why: "bs.B:cy is an acceptable location of d2 (the total whose lines no longer add up) but d2 accepts casting only, so tie is mistyped."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7003 (scanned). d1 casting anl.total book_prior 84.228; d2 tie anl.bga book_close 5.036 vs BS 5.836.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7003
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    column: "Buchwert Vorjahr"
+    found_value: "84.228"
+    expected_value: "48.228"
+    explanation: "Prior-year book values 1.053 + 17.936 + 14.902 + 6.197 + 8.140 = 48.228; total shows 84.228."
+    confidence: 0.95
+  expect:
+    verdict: hit
+    defect: heldout-7003.d1
+  why: "'Summe' on page 6 is anl.total; exact header gives anl.total:book_prior, the changed cell of d1."
+
+- package: heldout-7003
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    explanation: "The total row of the fixed-asset schedule does not add up."
+    confidence: 0.5
+  expect:
+    verdict: hit
+    defect: heldout-7003.d2
+  why: "OPEN: no column and no found_value, so §4 step 2 takes every cell of anl.total; that includes book_prior (d1, already found) and book_close (acceptable for d2 with casting, not found yet). §5 makes it a hit for the error not found yet; assumes a missing column counts as 'matches nothing'."
+
+- package: heldout-7003
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Andere Anlagen, Betriebs- und Geschäftsausstattung"
+    column: "31.12.2026 TEUR"
+    found_value: "5.836"
+    expected_value: "5.036"
+    explanation: "Balance sheet shows 5.836, the fixed-asset schedule's closing book value is 5.036."
+    confidence: 0.8
+  expect:
+    verdict: duplicate
+    defect: heldout-7003.d2
+  why: "Label matches bs.A.II.3 and anl.bga; page 2 narrows to bs.A.II.3; cy cell is the other side of d2's tie (acceptable, tie acceptable); d2 already found by the previous finding."
+
+- package: heldout-7003
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Betriebs- und Geschäftsausstattung"
+    found_value: "5.036"
+    expected_value: "5.836"
+    explanation: "Schedule book value of office equipment disagrees with the balance sheet."
+    confidence: 0.7
+  expect:
+    verdict: duplicate
+    defect: heldout-7003.d2
+  why: "Part of a long label: no label equals it, labels containing it are anl.bga (page 6) and bs.A.II.3; page 6 narrows; no column, so the one cell whose value equals 5.036 (book_close) is taken; d2 already found."
+
+- package: heldout-7003
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    row_label: "Summe"
+    column: "Gesamt"
+    found_value: "39.699"
+    expected_value: "39.700"
+    explanation: "Verbindlichkeitenspiegel total: 27.910 + 8.558 + 3.232 = 39.700."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "No page: 'Summe' matches anl.total and vbl.sum; only vbl has the exact header 'Gesamt', so vbl.sum:total, a listed rounding difference."
+
+- package: heldout-7003
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    column: "Zugänge"
+    found_value: "8.475"
+    expected_value: "8.476"
+    explanation: "Additions 205 + 1.919 + 4.102 + 1.048 + 1.202 = 8.476."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "anl.total:additions is a listed rounding difference and not among the acceptable locations of d1 (book_prior column) or d2 (book_close column and BS)."
+
+- package: heldout-7003
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "Die Umsatzerlöse stiegen im Geschäftsjahr 2026 um 16,7 %"
+    found_value: "16,7 %"
+    expected_value: "16,5 %"
+    explanation: "Revenue growth from 116.262 to 135.622 is stated as 16,7 % (reviewer's arithmetic is wrong; it is 16,65 %)."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "§4 step 4 locates claim.revenue_change, which is correct and no error, decoy or rounding location."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7004 (digital). d1 narrative capex 5.501 vs 5.510 (anl additions are acceptable too).
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7004
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Technische Anlagen und Maschinen"
+    column: "Zugänge"
+    found_value: "1.861"
+    explanation: "Additions to property, plant and equipment (1.963 + 1.861 + 1.686 = 5.510) do not tie to the 5.501 TEUR in the management report."
+    confidence: 0.6
+  expect:
+    verdict: mistyped
+    defect: heldout-7004.d1
+  why: "Page 6 narrows the label to anl.tech; exact header gives anl.tech:additions, an acceptable location of d1, but d1 accepts narrative only."
+
+- package: heldout-7004
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "Im Geschäftsjahr wurden 5.501 TEUR in Sachanlagen investiert."
+    found_value: "5.501"
+    expected_value: "5.510"
+    explanation: "Additions to Sachanlagen in the schedule total 5.510 TEUR."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7004.d1
+  why: "§4 step 4 locates claim.capex, the changed claim; the earlier mistyped finding did not find d1, so this is the hit."
+
+- package: heldout-7004
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Grundstücke und Bauten"
+    column: "Zugänge"
+    found_value: "1.963"
+    explanation: "Additions per schedule disagree with the investment stated in the management report."
+    confidence: 0.5
+  expect:
+    verdict: duplicate
+    defect: heldout-7004.d1
+  why: "A row label is given, so step 2: page 6 narrows to anl.land; anl.land:additions is acceptable for d1 with narrative; d1 already found."
+
+- package: heldout-7004
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Summe Passiva"
+    column: "2026"
+    found_value: "89.423"
+    expected_value: "89.424"
+    explanation: "34.946 + 4.445 + 50.028 + 5 = 89.424."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "bs.total.liabilities:cy is a listed rounding difference (1 TEUR over 4 lines) and no error location."
+
+- package: heldout-7004
+  finding:
+    type: casting
+    document: jahresabschluss_2025.pdf
+    page: 2
+    row_label: "Summe Passiva"
+    column: "31.12.2025 TEUR"
+    found_value: "98.805"
+    expected_value: "98.804"
+    explanation: "Last year's report: 28.284 + 6.447 + 63.861 + 212 = 98.804."
+    confidence: 0.3
+  expect:
+    verdict: rounding
+  why: "Finding on the prior-year report: its Summe Passiva (page 2) is a listed rounding difference; this year's Summe Passiva is on page 3, so the page excludes it."
+
+- package: heldout-7004
+  finding:
+    type: period
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "Geschäftsjahr 2027"
+    found_value: "2027"
+    explanation: "The outlook refers to the wrong financial year."
+    confidence: 0.2
+  expect:
+    verdict: unlocated
+  why: "Step 3: no heading on page 8 equals, contains or is contained in 'Geschäftsjahr 2027' (the outlook is body text); step 4: no claim contains 2027; step 5: page 8 has no cells. Resolves to nothing."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7005 (digital). d1 casting anl.total book_prior; d2 missing appropriation; d3 tie vbl.other total;
+# decoy: 374 TEUR moved from Sonstige Verbindlichkeiten to Sonstige Rückstellungen in the comparatives.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7005
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    column: "Buchwert Vorjahr"
+    found_value: "42.620"
+    expected_value: "42.260"
+    explanation: "1.192 + 14.323 + 17.247 + 3.401 + 6.097 = 42.260."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7005.d1
+  why: "anl.total:book_prior is the changed cell of d1; casting acceptable."
+
+- package: heldout-7005
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Vorschlag zur Ergebnisverwendung (§ 285 Nr. 34 HGB)"
+    explanation: "The notes contain no proposal for the appropriation of the result."
+    confidence: 0.85
+  expect:
+    verdict: hit
+    defect: heldout-7005.d2
+  why: "§4 step 1: 'Ergebnisverwendung' names the appropriation disclosure, the acceptable location of d2."
+
+- package: heldout-7005
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    page: 7
+    quote: "5. Sonstige Angaben"
+    explanation: "Unter den sonstigen Angaben fehlt der Vorschlag zur Ergebnisverwendung."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7005.d2
+  why: "§4 step 1: the quote names no disclosure, so words in the explanation are used; 'Ergebnisverwendung' gives disclosure:appropriation; d2 already found."
+
+- package: heldout-7005
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 7
+    row_label: "Sonstige Verbindlichkeiten"
+    column: "Gesamt"
+    found_value: "3.653"
+    expected_value: "3.635"
+    explanation: "Liabilities schedule total for other liabilities is 3.653; balance sheet line C.3 is 3.635 and the 'bis 1 Jahr' column is 3.635."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7005.d3
+  why: "Label matches bs.P.C.3 (page 3) and vbl.other (page 7); page 7 narrows; exact header 'Gesamt' gives vbl.other:total, the changed cell of d3."
+
+- package: heldout-7005
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Sonstige Verbindlichkeiten"
+    found_value: "3.635"
+    expected_value: "3.653"
+    explanation: "Balance sheet other liabilities disagree with the liabilities schedule."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7005.d3
+  why: "Page 3 narrows to bs.P.C.3; no column, so the one cell valued 3.635 (cy, the other side of the tie) is taken; acceptable for d3; already found. The py cell (a decoy location) is not taken."
+
+- package: heldout-7005
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Sonstige Rückstellungen"
+    column: "31.12.2025 TEUR"
+    found_value: "5.351"
+    expected_value: "4.977"
+    explanation: "The comparative for other provisions (5.351) differs from last year's report (4.977)."
+    confidence: 0.7
+  expect:
+    verdict: decoy
+  why: "bs.P.B.2:py is a location of the disclosed restatement and of no error (§5 decoy)."
+
+- package: heldout-7005
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 5
+    quote: "Im Vorjahr unter den sonstigen Verbindlichkeiten ausgewiesene Verpflichtungen von 374 TEUR werden nunmehr unter den sonstigen Rückstellungen gezeigt."
+    found_value: "374"
+    explanation: "The reclassification changes comparatives; the prior-year figures no longer agree with last year's report."
+    confidence: 0.4
+  expect:
+    verdict: unlocated
+  why: "OPEN: the restatement note itself is not a listed location. Step 3: no heading on page 5 matches the sentence; step 4: no claim contains 374; step 5: page 5 has no cells. Resolves to nothing, so unlocated, not decoy."
+
+- package: heldout-7005
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Eigenkapital"
+    column: "2026"
+    found_value: "46.442"
+    expected_value: "46.443"
+    explanation: "25 + 1.322 + 9.092 + 22.377 + 13.627 = 46.443."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "Label equals 'A. Eigenkapital'; bs.P.A:cy is a listed rounding difference (1 TEUR over 5 lines) and no error or decoy location."
+
+- package: heldout-7005
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Gesamthonorar"
+    column: "2026 TEUR"
+    found_value: "144"
+    expected_value: "150"
+    explanation: "Total auditor's fee seems to omit tax advisory services."
+    confidence: 0.2
+  expect:
+    verdict: false_alarm
+  why: "Wrong page: no 'Gesamthonorar' cell is on page 6, so the page does not narrow (§4 step 2 'if given and matching'); fee.total:cy on page 7 is correct and no error, decoy or rounding location."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7006 (digital). d1 prior_year bs.A.II.3 comparative 10.715 vs 11.279 in last year's report.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7006
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "3. Andere Anlagen, Betriebs- und Geschäftsausstattung"
+    column: "31.12.2025 TEUR"
+    found_value: "10.715"
+    expected_value: "11.279"
+    explanation: "Comparative for office equipment is 10.715; last year's balance sheet and the schedule's prior-year book value show 11.279."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7006.d1
+  why: "Exact label with numbering; page 2 narrows to bs.A.II.3; exact header gives bs.A.II.3:py, the changed cell of d1."
+
+- package: heldout-7006
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Andere Anlagen, Betriebs- und Geschäftsausstattung"
+    column: "Buchwert Vorjahr"
+    found_value: "11.279"
+    expected_value: "10.715"
+    explanation: "Schedule prior-year book value does not tie to the balance sheet comparative."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7006.d1
+  why: "Page 6 narrows to anl.bga; anl.bga:book_prior is an acceptable location (other side of the broken tie), tie acceptable; d1 already found."
+
+- package: heldout-7006
+  finding:
+    type: period
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Anlagevermögen"
+    column: "2025"
+    found_value: "95.451"
+    expected_value: "96.015"
+    explanation: "The previous-year column of fixed assets seems to carry figures from a different period."
+    confidence: 0.3
+  expect:
+    verdict: mistyped
+    defect: heldout-7006.d1
+  why: "OPEN: §4 lists the cell step (2, row label given) before the heading step (3, 'for period findings'); taking the order literally, step 2 gives bs.A:py, an acceptable location of d1 whose types exclude period, so mistyped."
+
+- package: heldout-7006
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Summe Aktiva"
+    column: "31.12.2025 TEUR"
+    found_value: "148.780"
+    expected_value: "149.344"
+    explanation: "Prior-year Summe Aktiva 148.780 does not equal prior-year Summe Passiva 149.344."
+    confidence: 0.6
+  expect:
+    verdict: mistyped
+    defect: heldout-7006.d1
+  why: "bs.total.assets:py is both a listed rounding difference and an acceptable location of d1; error verdicts come first (rounding only applies 'at no error'), and casting is not acceptable for d1, so mistyped."
+
+- package: heldout-7006
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Summe Aktiva"
+    column: "2026"
+    found_value: "138.419"
+    expected_value: "138.418"
+    explanation: "99.091 + 39.097 + 230 = 138.418."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "bs.total.assets:cy is a listed rounding difference and not an acceptable location of d1 (which has the py cell only)."
+
+- package: heldout-7006
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "auditor's fee"
+    explanation: "No disclosure of the auditor's fees under § 285 Nr. 17 HGB."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "§4 step 1 locates disclosure:audit_fees, which is present in this package and no acceptable location of any error."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7007 (digital). d1 missing liabilities schedule; decoy: 601 TEUR moved in the comparatives.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7007
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    page: 7
+    quote: "Verbindlichkeitenspiegel"
+    explanation: "Section 4 of the notes has no breakdown of liabilities."
+    confidence: 0.9
+  expect:
+    verdict: hit
+    defect: heldout-7007.d1
+  why: "§4 step 1: 'Verbindlichkeitenspiegel' names liabilities_by_term, the acceptable location of d1."
+
+- package: heldout-7007
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Liabilities by remaining term (§ 268 Abs. 5, § 285 Nr. 1 HGB)"
+    explanation: "Required breakdown of liabilities by maturity is not given."
+    confidence: 0.8
+  expect:
+    verdict: duplicate
+    defect: heldout-7007.d1
+  why: "§4 step 1: 'remaining term' (an English name listed in §4) names liabilities_by_term; d1 already found."
+
+- package: heldout-7007
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Rückstellungen"
+    column: "2025"
+    found_value: "6.334"
+    expected_value: "5.733"
+    explanation: "Comparative provisions 6.334 vs 5.733 in last year's report."
+    confidence: 0.7
+  expect:
+    verdict: decoy
+  why: "Label equals 'B. Rückstellungen' exactly (so the containing labels are not used); page 3 and year give bs.P.B:py, a restatement location and no error location."
+
+- package: heldout-7007
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Verbindlichkeiten"
+    column: "31.12.2025 TEUR"
+    found_value: "74.378"
+    expected_value: "74.979"
+    explanation: "Prior-year liabilities total does not agree with last year's report (74.979)."
+    confidence: 0.5
+  expect:
+    verdict: decoy
+  why: "Label equals 'C. Verbindlichkeiten'; bs.P.C:py is both a decoy location and a listed rounding difference; §5 gives rounding only 'at no error or decoy', so decoy."
+
+- package: heldout-7007
+  finding:
+    type: prior_year
+    document: jahresabschluss_2025.pdf
+    page: 2
+    row_label: "Sonstige Verbindlichkeiten"
+    column: "2025"
+    found_value: "2.093"
+    expected_value: "1.492"
+    explanation: "Last year's report shows other liabilities of 2.093; this year's comparative is 1.492."
+    confidence: 0.5
+  expect:
+    verdict: false_alarm
+  why: "OPEN: flags the restatement from the prior-year report's side. The truth lists only this year's comparatives as decoy locations, and prior_bs_liabilities:bs.P.C.3:cy is no error or rounding location, so false_alarm, not decoy."
+
+- package: heldout-7007
+  finding:
+    type: casting
+    document: jahresabschluss_2025.pdf
+    page: 2
+    row_label: "Summe Aktiva"
+    column: "2025"
+    found_value: "108.366"
+    expected_value: "108.367"
+    explanation: "Last year's report: 61.330 + 46.504 + 533 = 108.367."
+    confidence: 0.3
+  expect:
+    verdict: rounding
+  why: "Prior-year report's bs.total.assets:cy is a listed rounding difference (this year's py cell, should it also match, is one too)."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7008 (digital, clean). Decoy: 347 TEUR moved in the comparatives.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7008
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    row_label: "Sonstige Rückstellungen"
+    column: "Vorjahr"
+    found_value: "4.321"
+    expected_value: "3.974"
+    explanation: "Comparative of other provisions differs from last year's report by 347."
+    confidence: 0.7
+  expect:
+    verdict: decoy
+  why: "Column 'Vorjahr' matches no header (no exact, no year, no containing header), so the one cell whose value equals 4.321 is taken: bs.P.B.2:py, a restatement location."
+
+- package: heldout-7008
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    row_label: "Summe Aktiva"
+    column: "2026"
+    found_value: "79.219"
+    expected_value: "79.220"
+    explanation: "39.356 + 39.563 + 301 = 79.220."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "No page; year 2026 picks this year's bs.total.assets:cy, a listed rounding difference."
+
+- package: heldout-7008
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 4
+    row_label: "Ergebnis nach Steuern"
+    column: "2025"
+    found_value: "14.149"
+    explanation: "Prior-year result after taxes does not add up exactly."
+    confidence: 0.3
+  expect:
+    verdict: rounding
+  why: "guv.15:py is a listed rounding difference; package is clean."
+
+- package: heldout-7008
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Latente Steuern"
+    found_value: "312"
+    explanation: "Deferred taxes are not included in the provisions subtotal."
+    confidence: 0.3
+  expect:
+    verdict: unlocated
+  why: "No label equals, contains or is contained in 'Latente Steuern'; no claim contains 312 and no cell on page 3 shows 312. Resolves to nothing."
+
+- package: heldout-7008
+  finding:
+    type: period
+    document: jahresabschluss_2026.pdf
+    page: 3
+    quote: "Bilanz zum 31. Dezember"
+    explanation: "Balance sheet heading on the liabilities page should be checked for the year."
+    confidence: 0.2
+  expect:
+    verdict: false_alarm
+  why: "Step 3: the fragment is contained in the page-3 heading 'Bilanz zum 31. Dezember 2026', which is correct and no error location."
+
+- package: heldout-7008
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    row_label: "Jahresüberschuss"
+    column: "2026"
+    found_value: "12.054"
+    expected_value: "12.266"
+    explanation: "Net income should equal the result after taxes."
+    confidence: 0.2
+  expect:
+    verdict: false_alarm
+  why: "No page: label matches guv.17 and bs.P.A.V; year 2026 keeps both cy cells; neither is an error, decoy or rounding location (the rounding difference is guv.17:py)."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7009 (scanned). d1 missing auditor's fees.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7009
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Disclosure of the auditor's fees (§ 285 Nr. 17 HGB)"
+    explanation: "The notes do not break down the total fee charged by the auditor."
+    confidence: 0.85
+  expect:
+    verdict: hit
+    defect: heldout-7009.d1
+  why: "§4 step 1: \"auditor's fee\" (listed in §4) names audit_fees, the acceptable location of d1."
+
+- package: heldout-7009
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    page: 7
+    row_label: "Honorar des Abschlussprüfers"
+    explanation: "Angabe nach § 285 Nr. 17 HGB fehlt."
+    confidence: 0.7
+  expect:
+    verdict: duplicate
+    defect: heldout-7009.d1
+  why: "OPEN: the German table title is not among the examples in §4; a careful reader expects it to name audit_fees (German or English are matched). d1 already found."
+
+- package: heldout-7009
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Angabe der durchschnittlichen Zahl der Arbeitnehmer"
+    explanation: "Employee numbers missing."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "Step 1 locates disclosure:employees, which is present here (page 7) and no error location."
+
+- package: heldout-7009
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Kapitalflussrechnung"
+    explanation: "Es fehlt eine Kapitalflussrechnung."
+    confidence: 0.2
+  expect:
+    verdict: unlocated
+  why: "Step 1: neither quote nor explanation names one of the five disclosures; the later steps find no heading matching the quote, no value and no claim sharing half its words. Resolves to nothing."
+
+- package: heldout-7009
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 3
+    row_label: "Summe Passiva"
+    column: "31.12.2026"
+    found_value: "72.361"
+    expected_value: "72.360"
+    explanation: "38.924 + 5.400 + 27.972 + 64 = 72.360."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "Column '31.12.2026' is no exact header but shares the year with '31.12.2026 TEUR'; bs.total.liabilities:cy is a listed rounding difference."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7010 (scanned, clean, no decoy).
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7010
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 4
+    row_label: "Jahresüberschuss"
+    column: "2026"
+    found_value: "13.946"
+    expected_value: "13.945"
+    explanation: "14.181 - 236 = 13.945."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "Page 4 narrows to guv.17; guv.17:cy is a listed rounding difference."
+
+- package: heldout-7010
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Vorräte"
+    column: "2025"
+    found_value: "15.730"
+    expected_value: "15.370"
+    explanation: "Comparative inventories appear to differ from last year's report (scan hard to read)."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "bs.B.I:py equals last year's 15.730; no error in this clean package and not a rounding location."
+
+- package: heldout-7010
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "Eigenkapitalquote beträgt zum Stichtag"
+    found_value: "47,4%"
+    expected_value: "46,1%"
+    explanation: "Equity ratio does not match the balance sheet."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "Step 4: ignoring the trailing %, claim.equity_ratio contains 47,4; it is correct (35.919 / 75.773) and no error location."
+
+- package: heldout-7010
+  finding:
+    type: narrative
+    document: jahresabschluss_2026.pdf
+    page: 8
+    quote: "equity ratio of 47.4 %"
+    found_value: "47.4 %"
+    expected_value: "46.1 %"
+    explanation: "Equity ratio in the management report is inconsistent."
+    confidence: 0.3
+  expect:
+    verdict: unlocated
+  why: "OPEN: §4 ignores only a trailing % or TEUR, not the decimal separator; no claim contains '47.4', the quote shares no words with a claim, and page 8 has no cells. Resolves to nothing."
+
+# ---------------------------------------------------------------------------------------------------------
+# heldout-7011 (digital). d1 missing appropriation; d2 tie anl.bga book_prior 7.562 vs BS comparative 7.652.
+# ---------------------------------------------------------------------------------------------------------
+- package: heldout-7011
+  finding:
+    type: tie
+    document: jahresabschluss_2026.pdf
+    row_label: "Andere Anlagen, Betriebs- und Geschäftsausstattung"
+    column: "2025"
+    found_value: "7.652"
+    expected_value: "7.562"
+    explanation: "Balance sheet comparative 7.652 vs schedule prior-year book value 7.562."
+    confidence: 0.8
+  expect:
+    verdict: hit
+    defect: heldout-7011.d2
+  why: "No page: label matches bs.A.II.3 and anl.bga; no exact header '2025', but the year is shared with '31.12.2025 TEUR', giving bs.A.II.3:py (other side of d2's tie, acceptable); tie acceptable."
+
+- package: heldout-7011
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    column: "Buchwert Vorjahr"
+    found_value: "72.069"
+    expected_value: "71.980"
+    explanation: "Prior-year book values add up to 71.980."
+    confidence: 0.6
+  expect:
+    verdict: duplicate
+    defect: heldout-7011.d2
+  why: "anl.total:book_prior is acceptable for d2 (the sum the change breaks) with casting acceptable; d2 already found."
+
+- package: heldout-7011
+  finding:
+    type: prior_year
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Betriebs- und Geschäftsausstattung"
+    column: "Vorjahr"
+    found_value: "7.562"
+    expected_value: "7.652"
+    explanation: "Prior-year book value of office equipment differs from last year's balance sheet."
+    confidence: 0.6
+  expect:
+    verdict: mistyped
+    defect: heldout-7011.d2
+  why: "Partial label, page 6 narrows to anl.bga; header containing 'Vorjahr' gives book_prior, acceptable for d2, but d2 accepts casting and tie only."
+
+- package: heldout-7011
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 6
+    row_label: "Summe"
+    column: "Restbuchwert"
+    explanation: "The fixed-asset schedule's total row does not add up."
+    confidence: 0.4
+  expect:
+    verdict: duplicate
+    defect: heldout-7011.d2
+  why: "Column matches no header and no found_value is given, so every cell of anl.total counts; it includes book_prior (acceptable for d2, casting acceptable); d2 already found."
+
+- package: heldout-7011
+  finding:
+    type: missing_disclosure
+    document: jahresabschluss_2026.pdf
+    quote: "Ergebnisverwendung"
+    explanation: "No proposal for the appropriation of net income."
+    confidence: 0.85
+  expect:
+    verdict: hit
+    defect: heldout-7011.d1
+  why: "§4 step 1: 'Ergebnisverwendung' names the appropriation disclosure, the acceptable location of d1."
+
+- package: heldout-7011
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Umlaufvermögen"
+    column: "2025"
+    found_value: "49.497"
+    expected_value: "49.496"
+    explanation: "20.763 + 20.277 + 8.456 = 49.496."
+    confidence: 0.4
+  expect:
+    verdict: rounding
+  why: "Year 2025 picks bs.B:py (and last year's bs.B:cy if the prior report's page 2 row is also taken); both are listed rounding differences."
+
+- package: heldout-7011
+  finding:
+    type: casting
+    document: jahresabschluss_2026.pdf
+    page: 2
+    row_label: "Anlagevermögen"
+    column: "31.12.2026 TEUR"
+    found_value: "68.109"
+    expected_value: "68.019"
+    explanation: "1.174 + 57.238 + 9.697 should be 68.019 (reviewer mis-added)."
+    confidence: 0.3
+  expect:
+    verdict: false_alarm
+  why: "bs.A:cy adds up exactly and is no error, decoy or rounding location."

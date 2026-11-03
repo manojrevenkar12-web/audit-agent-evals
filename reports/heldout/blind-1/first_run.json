@@ -1,0 +1,38 @@
+{
+ "set": "blind-1",
+ "status": "blind",
+ "ran_at": "2026-11-03T13:48:38+00:00",
+ "cases": 78,
+ "passed": 78,
+ "by_expected": {
+  "decoy": {
+   "cases": 4,
+   "passed": 4
+  },
+  "duplicate": {
+   "cases": 16,
+   "passed": 16
+  },
+  "false_alarm": {
+   "cases": 14,
+   "passed": 14
+  },
+  "hit": {
+   "cases": 17,
+   "passed": 17
+  },
+  "mistyped": {
+   "cases": 7,
+   "passed": 7
+  },
+  "rounding": {
+   "cases": 15,
+   "passed": 15
+  },
+  "unlocated": {
+   "cases": 5,
+   "passed": 5
+  }
+ },
+ "failures": []
+}

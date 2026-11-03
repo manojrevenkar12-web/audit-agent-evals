@@ -2,7 +2,7 @@
  "candidate": "baseline-no-ties@4",
  "production": "baseline@3",
  "split": "test",
- "decided_at": "2026-11-03T13:21:23+00:00",
+ "decided_at": "2026-11-03T13:47:55+00:00",
  "ship": false,
  "failed": [
   "non-inferiority: recall:tie"

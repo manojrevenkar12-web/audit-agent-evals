@@ -15,12 +15,10 @@ jobs:
       - run: .venv/bin/ruff check aae tests && .venv/bin/ruff format --check aae tests
       - run: .venv/bin/mypy aae
       - run: .venv/bin/pytest -q
-      - name: Regression sets still pass
+      - name: Held-out sets still pass (each set's first run is already recorded)
         run: |
           .venv/bin/aae build heldout
-          for s in heldout/*/; do
-            if [ "$(cat "$s/STATUS")" = "regression" ]; then .venv/bin/aae heldout "$(basename "$s")"; fi
-          done
+          for s in heldout/*/; do .venv/bin/aae heldout "$(basename "$s")"; done
 
   gates:
     runs-on: ubuntu-latest
