@@ -1,0 +1,156 @@
+{
+ "agent": "baseline-literal@4",
+ "split": "llm",
+ "packages": 24,
+ "defects": 26,
+ "findings": 69,
+ "verdicts": {
+  "hit": 20,
+  "duplicate": 25,
+  "mistyped": 0,
+  "decoy": 24,
+  "rounding": 0,
+  "unlocated": 0,
+  "false_alarm": 0
+ },
+ "metrics": {
+  "recall": {
+   "value": 0.7692307692307693,
+   "low": 0.5454545454545454,
+   "high": 0.9375,
+   "n": 26,
+   "k": 20
+  },
+  "precision": {
+   "value": 0.6521739130434783,
+   "low": 0.46979919678714877,
+   "high": 0.8285714285714286,
+   "n": 69,
+   "k": 45
+  },
+  "clean_false_alarm_rate": {
+   "value": 0.125,
+   "low": 0.0,
+   "high": 0.4,
+   "n": 8,
+   "k": 1
+  },
+  "decoy_false_alarm_rate": {
+   "value": 0.8571428571428571,
+   "low": 0.5,
+   "high": 1.0,
+   "n": 7,
+   "k": 6
+  },
+  "recall_digital": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 20,
+   "k": 20
+  },
+  "recall_scanned": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 6,
+   "k": 0
+  },
+  "recall:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "recall:tie": {
+   "value": 0.75,
+   "low": 0.3333333333333333,
+   "high": 1.0,
+   "n": 8,
+   "k": 6
+  },
+  "recall:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 4,
+   "k": 4
+  },
+  "recall:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "recall:missing_disclosure": {
+   "value": 0.4,
+   "low": 0.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 2
+  },
+  "recall:period": {
+   "value": 0.5,
+   "low": 0.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 1
+  },
+  "precision:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 13,
+   "k": 13
+  },
+  "precision:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 9,
+   "k": 9
+  },
+  "precision:prior_year": {
+   "value": 0.3142857142857143,
+   "low": 0.0,
+   "high": 0.6,
+   "n": 35,
+   "k": 11
+  },
+  "precision:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 9,
+   "k": 9
+  },
+  "precision:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "precision:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 1,
+   "k": 1
+  }
+ },
+ "operational": {
+  "cost_per_package_usd": 0.0,
+  "cost_total_usd": 0.0,
+  "p50_latency_s": 1.068161,
+  "p95_latency_s": 1.91204775,
+  "tokens_per_package": 0.0,
+  "errors": 0,
+  "pages_unreadable": 48,
+  "duplicates_per_finding": 0.36231884057971014
+ },
+ "run_id": "d738f72f-3d7a-5cc7",
+ "archive": "data/traces/archive/dt=2026-11-03/run=d738f72f-3d7a-5cc7"
+}

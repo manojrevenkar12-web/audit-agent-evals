@@ -1,0 +1,156 @@
+{
+ "agent": "baseline@3",
+ "split": "dev",
+ "packages": 160,
+ "defects": 205,
+ "findings": 376,
+ "verdicts": {
+  "hit": 167,
+  "duplicate": 209,
+  "mistyped": 0,
+  "decoy": 0,
+  "rounding": 0,
+  "unlocated": 0,
+  "false_alarm": 0
+ },
+ "metrics": {
+  "recall": {
+   "value": 0.8146341463414634,
+   "low": 0.7361111111111112,
+   "high": 0.8872549019607843,
+   "n": 205,
+   "k": 167
+  },
+  "precision": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 376,
+   "k": 376
+  },
+  "clean_false_alarm_rate": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 40,
+   "k": 0
+  },
+  "decoy_false_alarm_rate": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 29,
+   "k": 0
+  },
+  "recall_digital": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 167,
+   "k": 167
+  },
+  "recall_scanned": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 38,
+   "k": 0
+  },
+  "recall:casting": {
+   "value": 0.7818181818181819,
+   "low": 0.640609375,
+   "high": 0.9143009118541032,
+   "n": 55,
+   "k": 43
+  },
+  "recall:tie": {
+   "value": 0.75,
+   "low": 0.5813341493268055,
+   "high": 0.8958512931034482,
+   "n": 36,
+   "k": 27
+  },
+  "recall:prior_year": {
+   "value": 0.9722222222222222,
+   "low": 0.9069585755813954,
+   "high": 1.0,
+   "n": 36,
+   "k": 35
+  },
+  "recall:narrative": {
+   "value": 0.8260869565217391,
+   "low": 0.6739130434782609,
+   "high": 0.9473911070780398,
+   "n": 46,
+   "k": 38
+  },
+  "recall:missing_disclosure": {
+   "value": 0.7058823529411765,
+   "low": 0.4666666666666667,
+   "high": 0.9230769230769231,
+   "n": 17,
+   "k": 12
+  },
+  "recall:period": {
+   "value": 0.8,
+   "low": 0.5714285714285714,
+   "high": 1.0,
+   "n": 15,
+   "k": 12
+  },
+  "precision:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 100,
+   "k": 100
+  },
+  "precision:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 76,
+   "k": 76
+  },
+  "precision:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 112,
+   "k": 112
+  },
+  "precision:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 64,
+   "k": 64
+  },
+  "precision:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 12,
+   "k": 12
+  },
+  "precision:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 12,
+   "k": 12
+  }
+ },
+ "operational": {
+  "cost_per_package_usd": 0.0,
+  "cost_total_usd": 0.0,
+  "p50_latency_s": 1.1322055,
+  "p95_latency_s": 1.512842049999999,
+  "tokens_per_package": 0.0,
+  "errors": 0,
+  "pages_unreadable": 256,
+  "duplicates_per_finding": 0.5558510638297872
+ },
+ "run_id": "4e272084-a8d7-53dc",
+ "archive": "data/traces/archive/dt=2026-11-03/run=4e272084-a8d7-53dc"
+}

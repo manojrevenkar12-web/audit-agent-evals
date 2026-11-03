@@ -64,8 +64,11 @@ def main(argv: list[str] | None = None) -> int:
     q = sub.add_parser("queue")
     q.add_argument("action", choices=["build", "show"])
     q.add_argument("--split", default="llm")
+    h = sub.add_parser("heldout")
+    h.add_argument("set")
     s = sub.add_parser("serve")
     s.add_argument("--port", type=int, default=8077)
+    s.add_argument("--host", default="127.0.0.1")
     a = p.parse_args(argv)
 
     if a.cmd == "build":
@@ -129,10 +132,21 @@ def main(argv: list[str] | None = None) -> int:
         else:
             for item in queue.load()[:20]:
                 print(f"{item['priority']:.2f} {item['package']} #{item['idx']} {item['type']}: {item['reason']}")
+    elif a.cmd == "heldout":
+        from .evals import heldout
+
+        hr = heldout.run(a.set)
+        print(f"{hr['set']} ({hr['status']}): {hr['passed']}/{hr['cases']} cases pass; recorded as {hr['recorded_as']}")
+        for f in hr["failures"]:
+            print(
+                f"  case {f['case']} {f['package']} {f['type']}: expected {f['expected']} {f['expected_defect'] or ''}, "
+                f"got {f['got']} {f['got_defect'] or ''} ({f['located']})"
+            )
+        return 0 if not hr["failures"] else 1
     elif a.cmd == "serve":
         import uvicorn
 
-        uvicorn.run("aae.api:app", host="127.0.0.1", port=a.port)
+        uvicorn.run("aae.api:app", host=a.host, port=a.port)
     return 0
 
 

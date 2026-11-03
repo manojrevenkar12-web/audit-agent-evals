@@ -1,0 +1,125 @@
+{
+  "split": "llm",
+  "model": "haiku",
+  "prompt": "prompts/judge_v1.md",
+  "items": 141,
+  "errors": 0,
+  "cost_usd": 0.523,
+  "overall": {
+    "n": 136,
+    "tp": 92,
+    "fn": 11,
+    "tn": 33,
+    "fp": 0,
+    "sensitivity": 0.8932038834951457,
+    "specificity": 1.0,
+    "agreement": 0.9191176470588235,
+    "kappa": 0.8023255813953487
+  },
+  "by_agent": {
+    "baseline-literal@4": {
+      "n": 40,
+      "tp": 22,
+      "fn": 4,
+      "tn": 14,
+      "fp": 0,
+      "sensitivity": 0.8461538461538461,
+      "specificity": 1.0,
+      "agreement": 0.9,
+      "kappa": 0.7938144329896908
+    },
+    "baseline-strict@4": {
+      "n": 40,
+      "tp": 16,
+      "fn": 6,
+      "tn": 18,
+      "fp": 0,
+      "sensitivity": 0.7272727272727273,
+      "specificity": 1.0,
+      "agreement": 0.85,
+      "kappa": 0.7058823529411764
+    },
+    "claude-haiku@1": {
+      "n": 26,
+      "tp": 25,
+      "fn": 1,
+      "tn": 0,
+      "fp": 0,
+      "sensitivity": 0.9615384615384616,
+      "specificity": null,
+      "agreement": 0.9615384615384616,
+      "kappa": 0.0
+    },
+    "claude-sonnet@1": {
+      "n": 30,
+      "tp": 29,
+      "fn": 0,
+      "tn": 1,
+      "fp": 0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "agreement": 1.0,
+      "kappa": 1.0
+    }
+  },
+  "by_verdict": {
+    "decoy": { "n": 17, "judge_accepted": 0 },
+    "duplicate": { "n": 33, "judge_accepted": 24 },
+    "false_alarm": { "n": 4, "judge_accepted": 0 },
+    "hit": { "n": 70, "judge_accepted": 68 },
+    "mistyped": { "n": 4, "judge_accepted": 0 },
+    "rounding": { "n": 11, "judge_accepted": 0 },
+    "unlocated": { "n": 2, "judge_accepted": 1 }
+  },
+  "holdout": {
+    "calibration": {
+      "n": 70,
+      "tp": 45,
+      "fn": 8,
+      "tn": 17,
+      "fp": 0,
+      "sensitivity": 0.8490566037735849,
+      "specificity": 1.0,
+      "agreement": 0.8857142857142857,
+      "kappa": 0.7320574162679425
+    },
+    "agents": {
+      "baseline-literal@4": {
+        "findings": 19,
+        "judge_accepted": 0.5789473684210527,
+        "naive_precision": 0.5789473684210527,
+        "corrected_precision": 0.6818713450292397,
+        "low": 0.4261694036882488,
+        "high": 0.9695527329234511,
+        "truth_precision": 0.5789473684210527
+      },
+      "baseline-strict@4": {
+        "findings": 20,
+        "judge_accepted": 0.5,
+        "naive_precision": 0.5,
+        "corrected_precision": 0.5888888888888889,
+        "low": 0.3281603773584907,
+        "high": 0.8654166666666666,
+        "truth_precision": 0.65
+      },
+      "claude-haiku@1": {
+        "findings": 10,
+        "judge_accepted": 1.0,
+        "naive_precision": 1.0,
+        "corrected_precision": 1.0,
+        "low": 1.0,
+        "high": 1.0,
+        "truth_precision": 1.0
+      },
+      "claude-sonnet@1": {
+        "findings": 17,
+        "judge_accepted": 0.9411764705882353,
+        "naive_precision": 0.9411764705882353,
+        "corrected_precision": 1.0,
+        "low": 0.9286608260325406,
+        "high": 1.0,
+        "truth_precision": 0.9411764705882353
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+ "agent": "baseline-strict@4",
+ "split": "llm",
+ "packages": 24,
+ "defects": 26,
+ "findings": 450,
+ "verdicts": {
+  "hit": 20,
+  "duplicate": 29,
+  "mistyped": 4,
+  "decoy": 3,
+  "rounding": 394,
+  "unlocated": 0,
+  "false_alarm": 0
+ },
+ "metrics": {
+  "recall": {
+   "value": 0.7692307692307693,
+   "low": 0.5454545454545454,
+   "high": 0.9375,
+   "n": 26,
+   "k": 20
+  },
+  "precision": {
+   "value": 0.10888888888888888,
+   "low": 0.05468610822446556,
+   "high": 0.1614616031390133,
+   "n": 450,
+   "k": 49
+  },
+  "clean_false_alarm_rate": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 8,
+   "k": 8
+  },
+  "decoy_false_alarm_rate": {
+   "value": 0.42857142857142855,
+   "low": 0.0,
+   "high": 0.8333333333333334,
+   "n": 7,
+   "k": 3
+  },
+  "recall_digital": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 20,
+   "k": 20
+  },
+  "recall_scanned": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 6,
+   "k": 0
+  },
+  "recall:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "recall:tie": {
+   "value": 0.75,
+   "low": 0.3333333333333333,
+   "high": 1.0,
+   "n": 8,
+   "k": 6
+  },
+  "recall:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 4,
+   "k": 4
+  },
+  "recall:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "recall:missing_disclosure": {
+   "value": 0.4,
+   "low": 0.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 2
+  },
+  "recall:period": {
+   "value": 0.5,
+   "low": 0.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 1
+  },
+  "precision:casting": {
+   "value": 0.04066985645933014,
+   "low": 0.01431726407944893,
+   "high": 0.07247035573122526,
+   "n": 418,
+   "k": 17
+  },
+  "precision:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 9,
+   "k": 9
+  },
+  "precision:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 11,
+   "k": 11
+  },
+  "precision:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 9,
+   "k": 9
+  },
+  "precision:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "precision:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 1,
+   "k": 1
+  }
+ },
+ "operational": {
+  "cost_per_package_usd": 0.0,
+  "cost_total_usd": 0.0,
+  "p50_latency_s": 0.86734,
+  "p95_latency_s": 1.2075583,
+  "tokens_per_package": 0.0,
+  "errors": 0,
+  "pages_unreadable": 48,
+  "duplicates_per_finding": 0.06444444444444444
+ },
+ "run_id": "f60cb7ac-9c4b-5131",
+ "archive": "data/traces/archive/dt=2026-11-03/run=f60cb7ac-9c4b-5131"
+}

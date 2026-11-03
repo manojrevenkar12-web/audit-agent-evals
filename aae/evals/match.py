@@ -84,9 +84,13 @@ class Locator:
 
     def locate(self, f: Finding) -> Located:
         did = doc_id(f.document)
-        if f.type == "missing_disclosure" and not f.row_label:
-            text = norm(f"{f.quote or ''} {f.explanation}")
-            keys = {k for k, words in self.keywords.items() if any(w in text for w in words)}
+        if f.type == "missing_disclosure":
+            keys: set[str] = set()
+            # what the finding names first; its explanation only if that names nothing
+            for text in (norm(f"{f.row_label or ''} {f.quote or ''}"), norm(f.explanation)):
+                keys = {k for k, words in self.keywords.items() if any(w in text for w in words)}
+                if keys:
+                    break
             if keys:
                 d = did if any(p["id"].startswith(did + ":") for p in self.placed) else self.current
                 return Located({f"{d}:disclosure:{k}" for k in keys}, "disclosure")

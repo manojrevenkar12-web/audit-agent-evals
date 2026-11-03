@@ -1,0 +1,18 @@
+# LLM-as-judge: decides whether a finding is a real error, without the truth. Calibrated against seeded truth.
+model: haiku
+prompt: prompts/judge_v1.md
+budget_usd: 0.5          # per finding
+workers: 4
+# Findings judged for calibration: a deterministic sample per agent, so hard negatives (rounding, decoys) and
+# model-written findings are all represented.
+calibration:
+  split: llm
+  agents: [baseline-strict@4, baseline-literal@4, claude-haiku@1, claude-sonnet@1]
+  per_agent: 40
+  seed: 11
+# Truth label for a finding, from the matcher's verdict. "unknown" findings go to people, not to calibration.
+labels:
+  valid: [hit, duplicate]
+  invalid: [decoy, rounding, mistyped]
+  invalid_if_numeric: [false_alarm]       # a numeric finding at a place every rule passes is wrong
+  numeric_types: [casting, tie, prior_year, period]

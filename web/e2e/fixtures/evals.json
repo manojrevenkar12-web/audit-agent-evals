@@ -1,0 +1,782 @@
+[
+  {
+    "agent": "baseline-literal@4",
+    "name": "baseline-literal",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 69,
+    "verdicts": {
+      "hit": 20,
+      "duplicate": 25,
+      "mistyped": 0,
+      "decoy": 24,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": { "value": 0.7692307692307693, "low": 0.5454545454545454, "high": 0.9375, "n": 26, "k": 20 },
+      "precision": {
+        "value": 0.6521739130434783,
+        "low": 0.46979919678714877,
+        "high": 0.8285714285714286,
+        "n": 69,
+        "k": 45
+      },
+      "clean_false_alarm_rate": { "value": 0.125, "low": 0.0, "high": 0.4, "n": 8, "k": 1 },
+      "decoy_false_alarm_rate": { "value": 0.8571428571428571, "low": 0.5, "high": 1.0, "n": 7, "k": 6 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 6, "k": 0 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 0.75, "low": 0.3333333333333333, "high": 1.0, "n": 8, "k": 6 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 0.4, "low": 0.0, "high": 1.0, "n": 5, "k": 2 },
+      "recall:period": { "value": 0.5, "low": 0.0, "high": 1.0, "n": 2, "k": 1 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 13, "k": 13 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:prior_year": { "value": 0.3142857142857143, "low": 0.0, "high": 0.6, "n": 35, "k": 11 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 1, "k": 1 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 1.068161,
+      "p95_latency_s": 1.91204775,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 48,
+      "duplicates_per_finding": 0.36231884057971014
+    },
+    "run_id": "d738f72f-3d7a-5cc7"
+  },
+  {
+    "agent": "baseline-strict@4",
+    "name": "baseline-strict",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 450,
+    "verdicts": {
+      "hit": 20,
+      "duplicate": 29,
+      "mistyped": 4,
+      "decoy": 3,
+      "rounding": 394,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": { "value": 0.7692307692307693, "low": 0.5454545454545454, "high": 0.9375, "n": 26, "k": 20 },
+      "precision": {
+        "value": 0.10888888888888888,
+        "low": 0.05468610822446556,
+        "high": 0.1614616031390133,
+        "n": 450,
+        "k": 49
+      },
+      "clean_false_alarm_rate": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 8, "k": 8 },
+      "decoy_false_alarm_rate": {
+        "value": 0.42857142857142855,
+        "low": 0.0,
+        "high": 0.8333333333333334,
+        "n": 7,
+        "k": 3
+      },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 6, "k": 0 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 0.75, "low": 0.3333333333333333, "high": 1.0, "n": 8, "k": 6 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 0.4, "low": 0.0, "high": 1.0, "n": 5, "k": 2 },
+      "recall:period": { "value": 0.5, "low": 0.0, "high": 1.0, "n": 2, "k": 1 },
+      "precision:casting": {
+        "value": 0.04066985645933014,
+        "low": 0.01431726407944893,
+        "high": 0.07247035573122526,
+        "n": 418,
+        "k": 17
+      },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 11, "k": 11 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 1, "k": 1 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 0.86734,
+      "p95_latency_s": 1.2075583,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 48,
+      "duplicates_per_finding": 0.06444444444444444
+    },
+    "run_id": "f60cb7ac-9c4b-5131"
+  },
+  {
+    "agent": "baseline@3",
+    "name": "baseline",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 45,
+    "verdicts": {
+      "hit": 20,
+      "duplicate": 25,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": { "value": 0.7692307692307693, "low": 0.5454545454545454, "high": 0.9375, "n": 26, "k": 20 },
+      "precision": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 45, "k": 45 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 8, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 7, "k": 0 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 6, "k": 0 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 0.75, "low": 0.3333333333333333, "high": 1.0, "n": 8, "k": 6 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 0.4, "low": 0.0, "high": 1.0, "n": 5, "k": 2 },
+      "recall:period": { "value": 0.5, "low": 0.0, "high": 1.0, "n": 2, "k": 1 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 13, "k": 13 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 11, "k": 11 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 1, "k": 1 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 0.41015250000000003,
+      "p95_latency_s": 0.7832372499999997,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 48,
+      "duplicates_per_finding": 0.5555555555555556
+    },
+    "run_id": "22d920fd-dbd7-50c3"
+  },
+  {
+    "agent": "claude-haiku@1",
+    "name": "claude-haiku",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 31,
+    "verdicts": {
+      "hit": 20,
+      "duplicate": 6,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 2,
+      "false_alarm": 3
+    },
+    "metrics": {
+      "recall": { "value": 0.7692307692307693, "low": 0.5237577639751554, "high": 1.0, "n": 26, "k": 20 },
+      "precision": {
+        "value": 0.8387096774193549,
+        "low": 0.6499264705882355,
+        "high": 0.9666666666666667,
+        "n": 31,
+        "k": 26
+      },
+      "clean_false_alarm_rate": { "value": 0.125, "low": 0.0, "high": 0.42857142857142855, "n": 8, "k": 1 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 7, "k": 0 },
+      "recall_digital": { "value": 0.7, "low": 0.38461538461538464, "high": 1.0, "n": 20, "k": 14 },
+      "recall_scanned": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 6, "k": 6 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 0.625, "low": 0.25, "high": 1.0, "n": 8, "k": 5 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 0.6, "low": 0.0, "high": 1.0, "n": 5, "k": 3 },
+      "recall:period": { "value": 0.5, "low": 0.0, "high": 1.0, "n": 2, "k": 1 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 10, "k": 10 },
+      "precision:narrative": { "value": 0.7142857142857143, "low": 0.25, "high": 1.0, "n": 7, "k": 5 },
+      "precision:missing_disclosure": { "value": 0.5, "low": 0.0, "high": 1.0, "n": 6, "k": 3 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 1, "k": 1 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.009294021250000001,
+      "cost_total_usd": 0.22305650999999999,
+      "p50_latency_s": 46.917500000000004,
+      "p95_latency_s": 54.7845,
+      "tokens_per_package": 114332.66666666667,
+      "errors": 0,
+      "pages_unreadable": 0,
+      "duplicates_per_finding": 0.1935483870967742
+    },
+    "run_id": "66e35680-6ef8-5b20"
+  },
+  {
+    "agent": "claude-sonnet@1",
+    "name": "claude-sonnet",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 30,
+    "verdicts": {
+      "hit": 26,
+      "duplicate": 3,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 1
+    },
+    "metrics": {
+      "recall": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 26, "k": 26 },
+      "precision": { "value": 0.9666666666666667, "low": 0.8888888888888888, "high": 1.0, "n": 30, "k": 29 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 8, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 7, "k": 0 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 6, "k": 6 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 8, "k": 8 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:prior_year": { "value": 0.8571428571428571, "low": 0.0, "high": 1.0, "n": 7, "k": 6 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.10984857083333333,
+      "cost_total_usd": 2.6363657,
+      "p50_latency_s": 34.040499999999994,
+      "p95_latency_s": 44.47425,
+      "tokens_per_package": 104600.54166666667,
+      "errors": 0,
+      "pages_unreadable": 0,
+      "duplicates_per_finding": 0.1
+    },
+    "run_id": "71b99285-ea17-5857"
+  },
+  {
+    "agent": "hybrid-haiku@1",
+    "name": "hybrid-haiku",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 53,
+    "verdicts": {
+      "hit": 26,
+      "duplicate": 25,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 1,
+      "false_alarm": 1
+    },
+    "metrics": {
+      "recall": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 26, "k": 26 },
+      "precision": { "value": 0.9622641509433962, "low": 0.8918918918918919, "high": 1.0, "n": 53, "k": 51 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 8, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 7, "k": 0 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 6, "k": 6 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 8, "k": 8 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 13, "k": 13 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 11, "k": 11 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 11, "k": 11 },
+      "precision:narrative": {
+        "value": 0.8181818181818182,
+        "low": 0.42857142857142855,
+        "high": 1.0,
+        "n": 11,
+        "k": 9
+      },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.002277260833333333,
+      "cost_total_usd": 0.054654259999999996,
+      "p50_latency_s": 1.187308,
+      "p95_latency_s": 54.0381862,
+      "tokens_per_package": 27173.625,
+      "errors": 0,
+      "pages_unreadable": 0,
+      "duplicates_per_finding": 0.4716981132075472
+    },
+    "run_id": "c7105c4c-c2bc-5d06"
+  },
+  {
+    "agent": "hybrid-sonnet@1",
+    "name": "hybrid-sonnet",
+    "split": "llm",
+    "packages": 24,
+    "defects": 26,
+    "findings": 52,
+    "verdicts": {
+      "hit": 26,
+      "duplicate": 25,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 1
+    },
+    "metrics": {
+      "recall": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 26, "k": 26 },
+      "precision": { "value": 0.9807692307692307, "low": 0.9259259259259259, "high": 1.0, "n": 52, "k": 51 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 8, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 7, "k": 0 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "recall_scanned": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 6, "k": 6 },
+      "recall:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "recall:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 8, "k": 8 },
+      "recall:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 4, "k": 4 },
+      "recall:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "recall:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 13, "k": 13 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 11, "k": 11 },
+      "precision:prior_year": { "value": 0.9166666666666666, "low": 0.0, "high": 1.0, "n": 12, "k": 11 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 9, "k": 9 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 5, "k": 5 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 2, "k": 2 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.024003466666666667,
+      "cost_total_usd": 0.5760832,
+      "p50_latency_s": 1.0390045,
+      "p95_latency_s": 34.692425799999995,
+      "tokens_per_package": 23196.083333333332,
+      "errors": 0,
+      "pages_unreadable": 0,
+      "duplicates_per_finding": 0.4807692307692308
+    },
+    "run_id": "aada42e4-4e80-51d7"
+  },
+  {
+    "agent": "baseline-literal@4",
+    "name": "baseline-literal",
+    "split": "test",
+    "packages": 160,
+    "defects": 217,
+    "findings": 437,
+    "verdicts": {
+      "hit": 169,
+      "duplicate": 193,
+      "mistyped": 0,
+      "decoy": 75,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": {
+        "value": 0.7788018433179723,
+        "low": 0.6965151918976547,
+        "high": 0.8597285067873304,
+        "n": 217,
+        "k": 169
+      },
+      "precision": {
+        "value": 0.8283752860411899,
+        "low": 0.7690498974080583,
+        "high": 0.889403467678285,
+        "n": 437,
+        "k": 362
+      },
+      "clean_false_alarm_rate": {
+        "value": 0.11428571428571428,
+        "low": 0.025,
+        "high": 0.23529411764705882,
+        "n": 35,
+        "k": 4
+      },
+      "decoy_false_alarm_rate": {
+        "value": 0.6451612903225806,
+        "low": 0.47488970588235313,
+        "high": 0.8181818181818182,
+        "n": 31,
+        "k": 20
+      },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 169, "k": 169 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 48, "k": 0 },
+      "recall:casting": {
+        "value": 0.7727272727272727,
+        "low": 0.6278955768353853,
+        "high": 0.9024390243902439,
+        "n": 44,
+        "k": 34
+      },
+      "recall:tie": {
+        "value": 0.8048780487804879,
+        "low": 0.6665094339622644,
+        "high": 0.9362034574468083,
+        "n": 41,
+        "k": 33
+      },
+      "recall:prior_year": {
+        "value": 0.6756756756756757,
+        "low": 0.5127906976744186,
+        "high": 0.8333333333333334,
+        "n": 37,
+        "k": 25
+      },
+      "recall:narrative": {
+        "value": 0.8636363636363636,
+        "low": 0.7441711389385808,
+        "high": 0.9555555555555556,
+        "n": 44,
+        "k": 38
+      },
+      "recall:missing_disclosure": {
+        "value": 0.7407407407407407,
+        "low": 0.5599705882352942,
+        "high": 0.9230769230769231,
+        "n": 27,
+        "k": 20
+      },
+      "recall:period": {
+        "value": 0.7916666666666666,
+        "low": 0.5881845841784991,
+        "high": 0.96,
+        "n": 24,
+        "k": 19
+      },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 99, "k": 99 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 74, "k": 74 },
+      "precision:prior_year": {
+        "value": 0.5562130177514792,
+        "low": 0.43101811436054127,
+        "high": 0.6851947308132875,
+        "n": 169,
+        "k": 94
+      },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 56, "k": 56 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 19, "k": 19 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 1.0438945,
+      "p95_latency_s": 1.605223499999999,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 280,
+      "duplicates_per_finding": 0.4416475972540046
+    },
+    "run_id": "7f912c9d-94fb-5a0f"
+  },
+  {
+    "agent": "baseline-no-ties@4",
+    "name": "baseline-no-ties",
+    "split": "test",
+    "packages": 160,
+    "defects": 217,
+    "findings": 284,
+    "verdicts": {
+      "hit": 167,
+      "duplicate": 117,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": {
+        "value": 0.7695852534562212,
+        "low": 0.6908982683982684,
+        "high": 0.8518518518518519,
+        "n": 217,
+        "k": 167
+      },
+      "precision": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 284, "k": 284 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 35, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 31, "k": 0 },
+      "recall_digital": {
+        "value": 0.9881656804733728,
+        "low": 0.9698795180722891,
+        "high": 1.0,
+        "n": 169,
+        "k": 167
+      },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 48, "k": 0 },
+      "recall:casting": {
+        "value": 0.7727272727272727,
+        "low": 0.6278955768353853,
+        "high": 0.9024390243902439,
+        "n": 44,
+        "k": 34
+      },
+      "recall:tie": {
+        "value": 0.7560975609756098,
+        "low": 0.609729586426299,
+        "high": 0.896551724137931,
+        "n": 41,
+        "k": 31
+      },
+      "recall:prior_year": {
+        "value": 0.6756756756756757,
+        "low": 0.5127906976744186,
+        "high": 0.8333333333333334,
+        "n": 37,
+        "k": 25
+      },
+      "recall:narrative": {
+        "value": 0.8636363636363636,
+        "low": 0.7441711389385808,
+        "high": 0.9555555555555556,
+        "n": 44,
+        "k": 38
+      },
+      "recall:missing_disclosure": {
+        "value": 0.7407407407407407,
+        "low": 0.5599705882352942,
+        "high": 0.9230769230769231,
+        "n": 27,
+        "k": 20
+      },
+      "recall:period": {
+        "value": 0.7916666666666666,
+        "low": 0.5881845841784991,
+        "high": 0.96,
+        "n": 24,
+        "k": 19
+      },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 99, "k": 99 },
+      "precision:tie": { "value": null, "low": null, "high": null, "n": 0, "k": 0 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 90, "k": 90 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 56, "k": 56 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 19, "k": 19 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 1.027695,
+      "p95_latency_s": 1.4791116999999998,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 280,
+      "duplicates_per_finding": 0.4119718309859155
+    },
+    "run_id": "23b22a05-e6b9-53c8"
+  },
+  {
+    "agent": "baseline-strict@4",
+    "name": "baseline-strict",
+    "split": "test",
+    "packages": 160,
+    "defects": 217,
+    "findings": 2999,
+    "verdicts": {
+      "hit": 169,
+      "duplicate": 222,
+      "mistyped": 49,
+      "decoy": 12,
+      "rounding": 2547,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": {
+        "value": 0.7788018433179723,
+        "low": 0.6965151918976547,
+        "high": 0.8597285067873304,
+        "n": 217,
+        "k": 169
+      },
+      "precision": {
+        "value": 0.13037679226408802,
+        "low": 0.11210971141239755,
+        "high": 0.14997249161731932,
+        "n": 2999,
+        "k": 391
+      },
+      "clean_false_alarm_rate": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 35, "k": 35 },
+      "decoy_false_alarm_rate": {
+        "value": 0.2903225806451613,
+        "low": 0.13333333333333333,
+        "high": 0.46153846153846156,
+        "n": 31,
+        "k": 9
+      },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 169, "k": 169 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 48, "k": 0 },
+      "recall:casting": {
+        "value": 0.7727272727272727,
+        "low": 0.6278955768353853,
+        "high": 0.9024390243902439,
+        "n": 44,
+        "k": 34
+      },
+      "recall:tie": {
+        "value": 0.8048780487804879,
+        "low": 0.6665094339622644,
+        "high": 0.9362034574468083,
+        "n": 41,
+        "k": 33
+      },
+      "recall:prior_year": {
+        "value": 0.6756756756756757,
+        "low": 0.5127906976744186,
+        "high": 0.8333333333333334,
+        "n": 37,
+        "k": 25
+      },
+      "recall:narrative": {
+        "value": 0.8636363636363636,
+        "low": 0.7441711389385808,
+        "high": 0.9555555555555556,
+        "n": 44,
+        "k": 38
+      },
+      "recall:missing_disclosure": {
+        "value": 0.7407407407407407,
+        "low": 0.5599705882352942,
+        "high": 0.9230769230769231,
+        "n": 27,
+        "k": 20
+      },
+      "recall:period": {
+        "value": 0.7916666666666666,
+        "low": 0.5881845841784991,
+        "high": 0.96,
+        "n": 24,
+        "k": 19
+      },
+      "precision:casting": {
+        "value": 0.04817518248175182,
+        "low": 0.037194599365534195,
+        "high": 0.06054558957601727,
+        "n": 2740,
+        "k": 132
+      },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 74, "k": 74 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 90, "k": 90 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 56, "k": 56 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 19, "k": 19 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 0.8236755,
+      "p95_latency_s": 1.2794130000000001,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 280,
+      "duplicates_per_finding": 0.07402467489163055
+    },
+    "run_id": "2c576905-53e0-5b00"
+  },
+  {
+    "agent": "baseline@3",
+    "name": "baseline",
+    "split": "test",
+    "packages": 160,
+    "defects": 217,
+    "findings": 358,
+    "verdicts": {
+      "hit": 169,
+      "duplicate": 189,
+      "mistyped": 0,
+      "decoy": 0,
+      "rounding": 0,
+      "unlocated": 0,
+      "false_alarm": 0
+    },
+    "metrics": {
+      "recall": {
+        "value": 0.7788018433179723,
+        "low": 0.6965151918976547,
+        "high": 0.8597285067873304,
+        "n": 217,
+        "k": 169
+      },
+      "precision": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 358, "k": 358 },
+      "clean_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 35, "k": 0 },
+      "decoy_false_alarm_rate": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 31, "k": 0 },
+      "recall_digital": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 169, "k": 169 },
+      "recall_scanned": { "value": 0.0, "low": 0.0, "high": 0.0, "n": 48, "k": 0 },
+      "recall:casting": {
+        "value": 0.7727272727272727,
+        "low": 0.6278955768353853,
+        "high": 0.9024390243902439,
+        "n": 44,
+        "k": 34
+      },
+      "recall:tie": {
+        "value": 0.8048780487804879,
+        "low": 0.6665094339622644,
+        "high": 0.9362034574468083,
+        "n": 41,
+        "k": 33
+      },
+      "recall:prior_year": {
+        "value": 0.6756756756756757,
+        "low": 0.5127906976744186,
+        "high": 0.8333333333333334,
+        "n": 37,
+        "k": 25
+      },
+      "recall:narrative": {
+        "value": 0.8636363636363636,
+        "low": 0.7441711389385808,
+        "high": 0.9555555555555556,
+        "n": 44,
+        "k": 38
+      },
+      "recall:missing_disclosure": {
+        "value": 0.7407407407407407,
+        "low": 0.5599705882352942,
+        "high": 0.9230769230769231,
+        "n": 27,
+        "k": 20
+      },
+      "recall:period": {
+        "value": 0.7916666666666666,
+        "low": 0.5881845841784991,
+        "high": 0.96,
+        "n": 24,
+        "k": 19
+      },
+      "precision:casting": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 99, "k": 99 },
+      "precision:tie": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 74, "k": 74 },
+      "precision:prior_year": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 90, "k": 90 },
+      "precision:narrative": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 56, "k": 56 },
+      "precision:missing_disclosure": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 20, "k": 20 },
+      "precision:period": { "value": 1.0, "low": 1.0, "high": 1.0, "n": 19, "k": 19 }
+    },
+    "operational": {
+      "cost_per_package_usd": 0.0,
+      "cost_total_usd": 0.0,
+      "p50_latency_s": 0.9180245,
+      "p95_latency_s": 1.4963381,
+      "tokens_per_package": 0.0,
+      "errors": 0,
+      "pages_unreadable": 280,
+      "duplicates_per_finding": 0.5279329608938548
+    },
+    "run_id": "6f33fb56-8fa5-54c0"
+  }
+]

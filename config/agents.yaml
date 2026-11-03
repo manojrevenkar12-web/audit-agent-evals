@@ -46,3 +46,15 @@ agents:
     model: sonnet
     prompt: prompts/review_v1.md
     max_budget_usd: 2.0
+  hybrid-haiku:
+    kind: hybrid
+    version: 1
+    description: Rules on text documents; Claude Haiku only for packages with a scanned document.
+    rules: baseline
+    model_agent: claude-haiku
+  hybrid-sonnet:
+    kind: hybrid
+    version: 1
+    description: Rules on text documents; Claude Sonnet only for packages with a scanned document.
+    rules: baseline
+    model_agent: claude-sonnet

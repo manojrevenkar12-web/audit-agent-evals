@@ -1,0 +1,66 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    env:
+      AAE_LLM: "off"   # model answers come from the cache or not at all
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv --python 3.12 && uv pip install -e ".[dev]" python-hcl2
+      - run: .venv/bin/ruff check aae tests && .venv/bin/ruff format --check aae tests
+      - run: .venv/bin/mypy aae
+      - run: .venv/bin/pytest -q
+      - name: Regression sets still pass
+        run: |
+          .venv/bin/aae build heldout
+          for s in heldout/*/; do
+            if [ "$(cat "$s/STATUS")" = "regression" ]; then .venv/bin/aae heldout "$(basename "$s")"; fi
+          done
+
+  gates:
+    runs-on: ubuntu-latest
+    env:
+      AAE_LLM: "off"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv venv --python 3.12 && uv pip install -e ".[dev]"
+      - run: .venv/bin/aae build test
+      - name: Gates block the known-bad candidates
+        run: |
+          for c in baseline-strict baseline-literal baseline-no-ties; do
+            if .venv/bin/aae release "$c" --workers 4; then echo "$c should not ship"; exit 1; fi
+          done
+      - run: .venv/bin/aae traces load && .venv/bin/aae traces query
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 10 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm, cache-dependency-path: web/pnpm-lock.yaml }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint && pnpm exec tsc -b && pnpm test
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm e2e
+
+  infra:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+      - run: tofu fmt -check -recursive
+      - run: tofu init -backend=false && tofu validate

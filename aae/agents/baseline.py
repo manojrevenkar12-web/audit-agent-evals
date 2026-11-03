@@ -12,6 +12,7 @@ import time
 from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from pathlib import Path
+from typing import Literal
 
 from .. import config
 from .pdfread import ReadDocument, ReadTable, TableRow, normalise, parse_number, read
@@ -77,6 +78,14 @@ class _Review:
         return next((c for c in t.columns if re.search(rf"\b{year}\b", c)), None)
 
     # ------------------------------------------------------------------------------------------ casting
+
+    def footing_all(self, docs: list[ReadDocument]) -> None:
+        for d in docs:
+            self.footing(d)
+
+    def period_all(self, docs: list[ReadDocument], years: dict[str, int | None], fy: int) -> None:
+        for d in docs:
+            self.period(d, years[d.file] or fy)
 
     def footing(self, doc: ReadDocument) -> None:
         for key in ("assets", "liabilities"):
@@ -448,7 +457,7 @@ class BaselineAgent:
         t0 = time.perf_counter()
 
         @contextmanager
-        def span(name: str, kind: str, **attrs: str | int | float | bool) -> Iterator[None]:
+        def span(name: str, kind: Literal["extract", "check"], **attrs: str | int | float | bool) -> Iterator[None]:
             start = time.perf_counter()
             status = "ok"
             try:
@@ -472,6 +481,7 @@ class BaselineAgent:
         for pdf in sorted(folder.glob("*.pdf")):
             with span(f"read {pdf.name}", "extract", file=pdf.name):
                 docs.append(read(pdf, list(self.hgb["tables"].values())))
+            spans[-1].attributes["unreadable"] = bool(docs[-1].unreadable_pages)
         years = {d.file: fiscal_year(d, self.hgb) for d in docs}
         known = [y for y in years.values() if y]
         run = AgentRun(
@@ -491,12 +501,12 @@ class BaselineAgent:
         review = _Review(self.hgb, self.settings, current, prior, fy)
         enabled = set(self.settings["checks"])
         steps: list[tuple[str, Callable[[], None]]] = [
-            ("casting", lambda: [review.footing(d) for d in docs] and None),
+            ("casting", lambda: review.footing_all(docs)),
             ("tie", review.ties),
             ("prior_year", review.prior_year),
             ("narrative", review.narrative),
             ("missing_disclosure", review.disclosures),
-            ("period", lambda: [review.period(d, years[d.file] or fy) for d in docs] and None),
+            ("period", lambda: review.period_all(docs, years, fy)),
         ]
         for family, step in steps:
             current_readable = len(current.unreadable_pages) < current.pages

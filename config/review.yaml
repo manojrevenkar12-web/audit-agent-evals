@@ -1,0 +1,7 @@
+# The human review queue. Findings land here when the truth cannot settle them or the judge disagrees with it.
+labels: [valid, invalid, out_of_scope]     # out_of_scope: a real point, but not an error this review covers
+priority:
+  judge_disagrees_with_truth: 1.0          # either the judge or the ground truth is wrong: both matter
+  unknown_truth: 0.6                       # plus 0.4 x the agent's confidence
+  judge_failed: 0.5
+second_review_share: 0.25                  # this share of items is also given to a second reviewer (agreement)

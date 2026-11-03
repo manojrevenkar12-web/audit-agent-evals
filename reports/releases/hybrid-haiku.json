@@ -1,0 +1,143 @@
+{
+ "candidate": "hybrid-haiku@1",
+ "production": "baseline@3",
+ "split": "test",
+ "decided_at": "2026-11-03T13:42:22+00:00",
+ "ship": false,
+ "failed": [
+  "floor: clean_false_alarm_rate",
+  "non-inferiority: precision"
+ ],
+ "checks": [
+  {
+   "rule": "floor",
+   "metric": "precision",
+   "status": "pass",
+   "value": 0.9807692307692307,
+   "limit": 0.9,
+   "low": null,
+   "high": null,
+   "detail": "at least 0.90"
+  },
+  {
+   "rule": "floor",
+   "metric": "clean_false_alarm_rate",
+   "status": "fail",
+   "value": 0.11428571428571428,
+   "limit": 0.1,
+   "low": null,
+   "high": null,
+   "detail": "at most 0.10"
+  },
+  {
+   "rule": "floor",
+   "metric": "decoy_false_alarm_rate",
+   "status": "pass",
+   "value": 0.0,
+   "limit": 0.15,
+   "low": null,
+   "high": null,
+   "detail": "at most 0.15"
+  },
+  {
+   "rule": "floor",
+   "metric": "recall_digital",
+   "status": "pass",
+   "value": 1.0,
+   "limit": 0.85,
+   "low": null,
+   "high": null,
+   "detail": "at least 0.85"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall",
+   "status": "pass",
+   "value": 0.16129032258064524,
+   "limit": -0.03,
+   "low": 0.09268066847335138,
+   "high": 0.22973766019540662,
+   "detail": "production 0.779, candidate 0.940"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "precision",
+   "status": "fail",
+   "value": -0.019230769230769273,
+   "limit": -0.03,
+   "low": -0.037039328932893335,
+   "high": -0.0060828629980515525,
+   "detail": "production 1.000, candidate 0.981"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:casting",
+   "status": "pass",
+   "value": 0.09090909090909094,
+   "limit": -0.1,
+   "low": 0.020833333333333367,
+   "high": 0.1875422297297295,
+   "detail": "production 0.773, candidate 0.864"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:tie",
+   "status": "pass",
+   "value": 0.12195121951219512,
+   "limit": -0.1,
+   "low": 0.0208227040816326,
+   "high": 0.24444444444444435,
+   "detail": "production 0.805, candidate 0.927"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:prior_year",
+   "status": "pass",
+   "value": 0.2702702702702703,
+   "limit": -0.1,
+   "low": 0.12118181818181824,
+   "high": 0.41862340585146285,
+   "detail": "production 0.676, candidate 0.946"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:narrative",
+   "status": "pass",
+   "value": 0.09090909090909094,
+   "limit": -0.1,
+   "low": 0.020408163265306145,
+   "high": 0.18604651162790697,
+   "detail": "production 0.864, candidate 0.955"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:missing_disclosure",
+   "status": "pass",
+   "value": 0.2592592592592593,
+   "limit": -0.15,
+   "low": 0.07692307692307687,
+   "high": 0.44002941176470567,
+   "detail": "production 0.741, candidate 1.000"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:period",
+   "status": "pass",
+   "value": 0.20833333333333337,
+   "limit": -0.15,
+   "low": 0.040000000000000036,
+   "high": 0.4118154158215007,
+   "detail": "production 0.792, candidate 1.000"
+  }
+ ],
+ "watch": {
+  "duplicates_per_finding": 0.49038461538461536,
+  "cost_per_package_usd": 0.001956147625,
+  "p95_latency_s": 50.67253,
+  "recall_scanned": 0.7291666666666666
+ },
+ "evidence_runs": [
+  "6f33fb56-8fa5-54c0",
+  "ebb04217-2bd0-5944"
+ ]
+}

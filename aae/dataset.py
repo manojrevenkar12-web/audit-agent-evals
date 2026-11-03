@@ -29,7 +29,7 @@ def make_package(seed: int, split: str) -> tuple[Package, dict]:
     cfg = config.load("dataset")
     rng = random.Random(f"{split}:{seed}")
     pkg = build_package(f"{split}-{seed}", generate_company(seed, cfg["fiscal_year"]))
-    n = int(_weighted(rng, cfg["defects_per_package"]))  # type: ignore[arg-type]
+    n = int(str(_weighted(rng, cfg["defects_per_package"])))
     kinds = [str(_weighted(rng, cfg["defect_kinds"])) for _ in range(n)]
     restate = rng.random() < cfg["restatement_rate"]
     defects, decoys, restated = plant(pkg, rng, kinds, restate)
@@ -64,7 +64,7 @@ def build(split: str, limit: int | None = None) -> Path:
     root = config.DATA / split
     (root / "packages").mkdir(parents=True, exist_ok=True)
     (root / "truth").mkdir(parents=True, exist_ok=True)
-    manifest = {"split": split, "packages": []}
+    manifest: dict = {"split": split, "packages": []}
     count = cfg["packages"] if limit is None else min(limit, cfg["packages"])
     for i in range(count):
         seed = cfg["first_seed"] + i

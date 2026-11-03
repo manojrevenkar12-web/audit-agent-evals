@@ -1,0 +1,156 @@
+{
+ "agent": "claude-sonnet@1",
+ "split": "llm",
+ "packages": 24,
+ "defects": 26,
+ "findings": 30,
+ "verdicts": {
+  "hit": 26,
+  "duplicate": 3,
+  "mistyped": 0,
+  "decoy": 0,
+  "rounding": 0,
+  "unlocated": 0,
+  "false_alarm": 1
+ },
+ "metrics": {
+  "recall": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 26,
+   "k": 26
+  },
+  "precision": {
+   "value": 0.9666666666666667,
+   "low": 0.8888888888888888,
+   "high": 1.0,
+   "n": 30,
+   "k": 29
+  },
+  "clean_false_alarm_rate": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 8,
+   "k": 0
+  },
+  "decoy_false_alarm_rate": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 7,
+   "k": 0
+  },
+  "recall_digital": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 20,
+   "k": 20
+  },
+  "recall_scanned": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 6,
+   "k": 6
+  },
+  "recall:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "recall:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 8,
+   "k": 8
+  },
+  "recall:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 4,
+   "k": 4
+  },
+  "recall:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "recall:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "recall:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "precision:casting": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  },
+  "precision:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 9,
+   "k": 9
+  },
+  "precision:prior_year": {
+   "value": 0.8571428571428571,
+   "low": 0.0,
+   "high": 1.0,
+   "n": 7,
+   "k": 6
+  },
+  "precision:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "precision:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 5,
+   "k": 5
+  },
+  "precision:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 2,
+   "k": 2
+  }
+ },
+ "operational": {
+  "cost_per_package_usd": 0.10984857083333333,
+  "cost_total_usd": 2.6363657,
+  "p50_latency_s": 34.040499999999994,
+  "p95_latency_s": 44.47425,
+  "tokens_per_package": 104600.54166666667,
+  "errors": 0,
+  "pages_unreadable": 0,
+  "duplicates_per_finding": 0.1
+ },
+ "run_id": "71b99285-ea17-5857",
+ "archive": "data/traces/archive/dt=2026-11-03/run=71b99285-ea17-5857"
+}

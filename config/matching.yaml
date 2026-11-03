@@ -4,7 +4,7 @@ column_fallback: row           # a column that matches nothing: accept any cell 
 # Words that identify each required disclosure in a "missing disclosure" finding (German or English).
 disclosure_keywords:
   fixed_asset_schedule: [anlagenspiegel, anlagevermögen, anlagevermoegen, fixed asset, fixed_asset, anlagengitter]
-  liabilities_by_term: [verbindlichkeitenspiegel, restlaufzeit, maturit, liabilities_by_term, liabilities by term]
+  liabilities_by_term: [verbindlichkeitenspiegel, restlaufzeit, maturit, liabilities_by_term, liabilities by term, remaining term]
   audit_fees: [abschlussprüfer, abschlusspruefer, honorar, audit fee, audit_fees, auditor]
   employees: [arbeitnehmer, beschäftigt, mitarbeit, employee, headcount]
   appropriation: [ergebnisverwendung, gewinnverwendung, appropriation, vorzutragen, verwendung des jahres]

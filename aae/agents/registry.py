@@ -28,6 +28,10 @@ def get(name: str) -> Agent:
         from .llm import LLMAgent
 
         return LLMAgent(name)
+    if spec["kind"] == "hybrid":
+        from .hybrid import HybridAgent
+
+        return HybridAgent(name)
     raise ValueError(f"unknown agent kind {spec['kind']}")
 
 
