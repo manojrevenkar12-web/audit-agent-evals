@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/
+!data/README.md
+web/node_modules/
+web/dist/
+web/test-results/
+web/playwright-report/
+infra/.terraform/
+*.egg-info/

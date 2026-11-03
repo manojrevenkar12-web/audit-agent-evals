@@ -1,0 +1,46 @@
+[project]
+name = "audit-agent-evals"
+version = "0.1.0"
+description = "Evaluation and observability for LLM agents that review financial statements before audit sign-off"
+requires-python = ">=3.12"
+dependencies = [
+  "pyyaml>=6.0",
+  "pydantic>=2.9",
+  "reportlab>=4.2",
+  "pdfplumber>=0.11",
+  "pypdfium2>=4.30",
+  "chdb>=3.0",
+  "pyarrow>=17",
+  "numpy>=2.0",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "hypothesis>=6.100", "httpx>=0.27", "ruff>=0.6", "mypy>=1.11", "types-PyYAML"]
+
+[project.scripts]
+aae = "aae.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["aae*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: builds a dataset or runs many agent passes"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]  # the formatter keeps code at 120; long German strings stay whole
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true

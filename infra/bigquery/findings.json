@@ -1,0 +1,116 @@
+[
+ {
+  "name": "run_id",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "evaluation run: agent, split, answers"
+ },
+ {
+  "name": "day",
+  "type": "DATE",
+  "mode": "REQUIRED",
+  "description": "day the run was recorded"
+ },
+ {
+  "name": "agent",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "name@version"
+ },
+ {
+  "name": "split",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "dataset split"
+ },
+ {
+  "name": "package",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "package id"
+ },
+ {
+  "name": "idx",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "position in the agent's answer"
+ },
+ {
+  "name": "type",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "finding type"
+ },
+ {
+  "name": "document",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "file"
+ },
+ {
+  "name": "page",
+  "type": "INT64",
+  "mode": "NULLABLE",
+  "description": "page"
+ },
+ {
+  "name": "row_label",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "line item as printed"
+ },
+ {
+  "name": "col",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "column header as printed"
+ },
+ {
+  "name": "quote",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "sentence, heading or disclosure"
+ },
+ {
+  "name": "found_value",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "value shown"
+ },
+ {
+  "name": "expected_value",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "value the agent expected"
+ },
+ {
+  "name": "explanation",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "agent's reason"
+ },
+ {
+  "name": "confidence",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "agent's confidence"
+ },
+ {
+  "name": "verdict",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "hit | duplicate | mistyped | decoy | rounding | unlocated | false_alarm"
+ },
+ {
+  "name": "defect",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "matched defect id"
+ },
+ {
+  "name": "located",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "how the finding was located"
+ }
+]

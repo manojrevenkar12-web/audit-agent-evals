@@ -1,0 +1,104 @@
+[
+ {
+  "name": "run_id",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "evaluation run: agent, split, answers"
+ },
+ {
+  "name": "day",
+  "type": "DATE",
+  "mode": "REQUIRED",
+  "description": "day the run was recorded"
+ },
+ {
+  "name": "agent",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "name@version"
+ },
+ {
+  "name": "split",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "dataset split"
+ },
+ {
+  "name": "package",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "package id"
+ },
+ {
+  "name": "seq",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "position in the run"
+ },
+ {
+  "name": "name",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "step"
+ },
+ {
+  "name": "kind",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "retrieve | extract | check | llm | tool | other"
+ },
+ {
+  "name": "started_ms",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "offset from the run's start"
+ },
+ {
+  "name": "duration_ms",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "duration"
+ },
+ {
+  "name": "input_tokens",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "model input tokens"
+ },
+ {
+  "name": "output_tokens",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "model output tokens"
+ },
+ {
+  "name": "cache_read_tokens",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "prompt-cache reads"
+ },
+ {
+  "name": "cost_usd",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "cost"
+ },
+ {
+  "name": "model",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "model alias"
+ },
+ {
+  "name": "status",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "ok | error"
+ },
+ {
+  "name": "attributes",
+  "type": "JSON",
+  "mode": "REQUIRED",
+  "description": "other attributes"
+ }
+]

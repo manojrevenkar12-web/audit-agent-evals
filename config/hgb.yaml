@@ -1,0 +1,77 @@
+# What a reviewer knows about a German (HGB) annual report, written down for the baseline agent.
+# This is reading knowledge (layouts, item numbers, required notes), not knowledge of any package.
+# The evaluation side never reads this file; the agents never read config/dataset.yaml or data/*/truth.
+
+tables:   # printed table titles, exact
+  assets: Aktiva
+  liabilities: Passiva
+  income: Gewinn- und Verlustrechnung
+  fixed_assets: Entwicklung des Anlagevermögens (TEUR)
+  maturities: Verbindlichkeitenspiegel (TEUR)
+  audit_fees: Honorar des Abschlussprüfers (TEUR)
+
+total_prefix: Summe            # "Summe Aktiva", "Summe" in the notes
+fee_total_label: Gesamthonorar
+
+# § 275 Abs. 2 HGB (Gesamtkostenverfahren): sign of each item in the result after taxes (item 15).
+income_items:
+  revenue: 1
+  depreciation: 7
+  result_after_tax: 15
+  other_taxes: 16
+  net_income: 17
+income_signs: {1: 1, 2: 1, 3: 1, 4: 1, 5: -1, 6: -1, 7: -1, 8: -1, 9: 1, 10: 1, 11: 1, 12: -1, 13: -1, 14: -1}
+
+fixed_asset_columns:   # header as printed -> role
+  "AK 1.1.": cost_open
+  "Zugänge": additions
+  "Abgänge": disposals
+  "AK 31.12.": cost_close
+  "Kum. AfA 1.1.": dep_open
+  "AfA GJ": dep_year
+  "AfA Abgänge": dep_disposals
+  "Kum. AfA 31.12.": dep_close
+  "Buchwert 31.12.": book_close
+  "Buchwert Vorjahr": book_prior
+fixed_asset_rows:      # schedule line -> balance sheet line (both without numbering); tangible lines feed capex
+  "Immaterielle Vermögensgegenstände": { balance_sheet: "Immaterielle Vermögensgegenstände", tangible: false }
+  "Grundstücke und Bauten": { balance_sheet: "Grundstücke und Bauten", tangible: true }
+  "Technische Anlagen und Maschinen": { balance_sheet: "Technische Anlagen und Maschinen", tangible: true }
+  "Andere Anlagen, Betriebs- und Geschäftsausstattung": { balance_sheet: "Andere Anlagen, Betriebs- und Geschäftsausstattung", tangible: true }
+  "Finanzanlagen": { balance_sheet: "Finanzanlagen", tangible: false }
+
+maturity_columns:
+  "Gesamt": total
+  "bis 1 Jahr": lt1
+  "1 bis 5 Jahre": y1to5
+  "über 5 Jahre": gt5
+liabilities_line: Verbindlichkeiten     # the balance sheet group the schedule explains
+equity_line: Eigenkapital
+net_income_line: Jahresüberschuss
+
+# Required notes of a medium-sized GmbH, and how to recognise each in the text.
+disclosures:
+  fixed_asset_schedule: { law: "§ 284 Abs. 3 HGB", pattern: "Entwicklung des Anlagevermögens", name: "Anlagenspiegel" }
+  liabilities_by_term: { law: "§ 268 Abs. 5, § 285 Nr. 1 HGB", pattern: "Verbindlichkeitenspiegel", name: "Verbindlichkeitenspiegel" }
+  audit_fees: { law: "§ 285 Nr. 17 HGB", pattern: "Honorar des Abschlussprüfers", name: "Honorar des Abschlussprüfers" }
+  employees: { law: "§ 285 Nr. 7 HGB", pattern: "durchschnittlich [\\d.]+ Arbeitnehmer", name: "Zahl der Arbeitnehmer" }
+  appropriation: { law: "§ 285 Nr. 34 HGB", pattern: "schlägt vor, den Jahresüberschuss", name: "Ergebnisverwendungsvorschlag" }
+notes_heading: "Anhang"         # the disclosures are only required where the notes are
+
+# Statements in prose that a reviewer ties back to the figures. Groups are named; numbers German-formatted.
+claims:
+  revenue: "Die Umsatzerlöse (?P<verb>stiegen|sanken) im Geschäftsjahr \\d{4} um (?P<change>[\\d,]+) % auf (?P<revenue>[\\d.]+) TEUR \\(Vorjahr: (?P<revenue_prior>[\\d.]+) TEUR\\)"
+  net_income: "Jahresüberschuss von (?P<net_income>-?[\\d.]+) TEUR \\(Vorjahr: (?P<net_income_prior>-?[\\d.]+) TEUR\\)"
+  equity_ratio: "Eigenkapitalquote beträgt zum Stichtag (?P<equity_ratio>[\\d,]+) % \\(Vorjahr: (?P<equity_ratio_prior>[\\d,]+) %\\)"
+  capex: "wurden (?P<capex>[\\d.]+) TEUR in Sachanlagen investiert"
+  employees_notes: "durchschnittlich (?P<employees>[\\d.]+) Arbeitnehmerinnen"
+  employees_report: "beschäftigte die Gesellschaft (?P<employees_mr>[\\d.]+) Mitarbeitende"
+  appropriation: "schlägt vor, den Jahresüberschuss von (?P<appropriation>-?[\\d.]+) TEUR"
+restatement: "Verpflichtungen von (?P<amount>[\\d.]+) TEUR .{0,200}?Vorjahreszahlen wurden entsprechend angepasst"
+
+# Headings that carry the reporting date or year (checked against the fiscal year read from the balance sheet).
+dated_headings:
+  - "zum 31\\. Dezember (?P<year>\\d{4})"
+  - "bis 31\\. Dezember (?P<year>\\d{4})"
+  - "für das Geschäftsjahr (?P<year>\\d{4})"
+  - "^Gewinn- und Verlustrechnung (?P<year>\\d{4})$"

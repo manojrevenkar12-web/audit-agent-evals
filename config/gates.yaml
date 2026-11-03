@@ -1,0 +1,25 @@
+# Release gates for review agents. Decided on the test split (never used to build or tune an agent).
+split: test
+bootstrap: { resamples: 2000, seed: 7, level: 0.95 }   # package-level resampling, paired for comparisons
+
+# Every release must meet these (point estimates on the gate split).
+floors:
+  precision: { min: 0.90 }                 # a reviewer must be able to trust a flag
+  clean_false_alarm_rate: { max: 0.10 }    # share of clean packages with any wrong flag
+  decoy_false_alarm_rate: { max: 0.15 }    # share of packages with a disclosed restatement flagged as an error
+  recall_digital: { min: 0.85 }            # text-layer documents
+
+# Against the current production release on the same packages: the lower end of the 95% interval of
+# (candidate - production) must stay above -margin. A candidate may not be worse by more than this, with confidence.
+non_inferiority:
+  recall: 0.03
+  precision: 0.03
+  recall:casting: 0.10
+  recall:tie: 0.10
+  recall:prior_year: 0.10
+  recall:narrative: 0.10
+  recall:missing_disclosure: 0.15
+  recall:period: 0.15
+
+# Reported but not gating: shown on the release page so a reviewer sees the trade.
+watch: [recall_scanned, duplicates_per_finding, cost_per_package_usd, p95_latency_s]

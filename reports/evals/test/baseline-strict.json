@@ -1,0 +1,156 @@
+{
+ "agent": "baseline-strict@4",
+ "split": "test",
+ "packages": 160,
+ "defects": 217,
+ "findings": 2999,
+ "verdicts": {
+  "hit": 169,
+  "duplicate": 222,
+  "mistyped": 49,
+  "decoy": 12,
+  "rounding": 2547,
+  "unlocated": 0,
+  "false_alarm": 0
+ },
+ "metrics": {
+  "recall": {
+   "value": 0.7788018433179723,
+   "low": 0.6965151918976547,
+   "high": 0.8597285067873304,
+   "n": 217,
+   "k": 169
+  },
+  "precision": {
+   "value": 0.13037679226408802,
+   "low": 0.11210971141239755,
+   "high": 0.14997249161731932,
+   "n": 2999,
+   "k": 391
+  },
+  "clean_false_alarm_rate": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 35,
+   "k": 35
+  },
+  "decoy_false_alarm_rate": {
+   "value": 0.2903225806451613,
+   "low": 0.13333333333333333,
+   "high": 0.46153846153846156,
+   "n": 31,
+   "k": 9
+  },
+  "recall_digital": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 169,
+   "k": 169
+  },
+  "recall_scanned": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "n": 48,
+   "k": 0
+  },
+  "recall:casting": {
+   "value": 0.7727272727272727,
+   "low": 0.6278955768353853,
+   "high": 0.9024390243902439,
+   "n": 44,
+   "k": 34
+  },
+  "recall:tie": {
+   "value": 0.8048780487804879,
+   "low": 0.6665094339622644,
+   "high": 0.9362034574468083,
+   "n": 41,
+   "k": 33
+  },
+  "recall:prior_year": {
+   "value": 0.6756756756756757,
+   "low": 0.5127906976744186,
+   "high": 0.8333333333333334,
+   "n": 37,
+   "k": 25
+  },
+  "recall:narrative": {
+   "value": 0.8636363636363636,
+   "low": 0.7441711389385808,
+   "high": 0.9555555555555556,
+   "n": 44,
+   "k": 38
+  },
+  "recall:missing_disclosure": {
+   "value": 0.7407407407407407,
+   "low": 0.5599705882352942,
+   "high": 0.9230769230769231,
+   "n": 27,
+   "k": 20
+  },
+  "recall:period": {
+   "value": 0.7916666666666666,
+   "low": 0.5881845841784991,
+   "high": 0.96,
+   "n": 24,
+   "k": 19
+  },
+  "precision:casting": {
+   "value": 0.04817518248175182,
+   "low": 0.037194599365534195,
+   "high": 0.06054558957601727,
+   "n": 2740,
+   "k": 132
+  },
+  "precision:tie": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 74,
+   "k": 74
+  },
+  "precision:prior_year": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 90,
+   "k": 90
+  },
+  "precision:narrative": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 56,
+   "k": 56
+  },
+  "precision:missing_disclosure": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 20,
+   "k": 20
+  },
+  "precision:period": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n": 19,
+   "k": 19
+  }
+ },
+ "operational": {
+  "cost_per_package_usd": 0.0,
+  "cost_total_usd": 0.0,
+  "p50_latency_s": 0.8236755,
+  "p95_latency_s": 1.2794130000000001,
+  "tokens_per_package": 0.0,
+  "errors": 0,
+  "pages_unreadable": 280,
+  "duplicates_per_finding": 0.07402467489163055
+ },
+ "run_id": "2c576905-53e0-5b00",
+ "archive": "data/traces/archive/dt=2026-11-03/run=2c576905-53e0-5b00"
+}

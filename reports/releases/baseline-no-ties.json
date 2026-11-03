@@ -1,0 +1,142 @@
+{
+ "candidate": "baseline-no-ties@4",
+ "production": "baseline@3",
+ "split": "test",
+ "decided_at": "2026-11-03T13:21:23+00:00",
+ "ship": false,
+ "failed": [
+  "non-inferiority: recall:tie"
+ ],
+ "checks": [
+  {
+   "rule": "floor",
+   "metric": "precision",
+   "status": "pass",
+   "value": 1.0,
+   "limit": 0.9,
+   "low": null,
+   "high": null,
+   "detail": "at least 0.90"
+  },
+  {
+   "rule": "floor",
+   "metric": "clean_false_alarm_rate",
+   "status": "pass",
+   "value": 0.0,
+   "limit": 0.1,
+   "low": null,
+   "high": null,
+   "detail": "at most 0.10"
+  },
+  {
+   "rule": "floor",
+   "metric": "decoy_false_alarm_rate",
+   "status": "pass",
+   "value": 0.0,
+   "limit": 0.15,
+   "low": null,
+   "high": null,
+   "detail": "at most 0.15"
+  },
+  {
+   "rule": "floor",
+   "metric": "recall_digital",
+   "status": "pass",
+   "value": 0.9881656804733728,
+   "limit": 0.85,
+   "low": null,
+   "high": null,
+   "detail": "at least 0.85"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall",
+   "status": "pass",
+   "value": -0.009216589861751112,
+   "limit": -0.03,
+   "low": -0.023584905660377298,
+   "high": 0.0,
+   "detail": "production 0.779, candidate 0.770"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "precision",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.03,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 1.000, candidate 1.000"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:casting",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.1,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 0.773, candidate 0.773"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:tie",
+   "status": "fail",
+   "value": -0.04878048780487809,
+   "limit": -0.1,
+   "low": -0.1282051282051282,
+   "high": 0.0,
+   "detail": "production 0.805, candidate 0.756"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:prior_year",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.1,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 0.676, candidate 0.676"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:narrative",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.1,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 0.864, candidate 0.864"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:missing_disclosure",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.15,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 0.741, candidate 0.741"
+  },
+  {
+   "rule": "non-inferiority",
+   "metric": "recall:period",
+   "status": "pass",
+   "value": 0.0,
+   "limit": -0.15,
+   "low": 0.0,
+   "high": 0.0,
+   "detail": "production 0.792, candidate 0.792"
+  }
+ ],
+ "watch": {
+  "duplicates_per_finding": 0.4119718309859155,
+  "cost_per_package_usd": 0.0,
+  "p95_latency_s": 1.4791116999999998,
+  "recall_scanned": 0.0
+ },
+ "evidence_runs": [
+  "6f33fb56-8fa5-54c0",
+  "23b22a05-e6b9-53c8"
+ ]
+}

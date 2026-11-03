@@ -1,0 +1,10 @@
+# Where traces live and how long. Locally: Parquet files and an embedded ClickHouse (chdb). On GCP the same
+# Parquet layout goes to a GCS bucket and BigQuery (infra/), with the same retention.
+archive:
+  path: data/traces/archive        # dt=YYYY-MM-DD/run=<id>/{runs,spans,findings}.parquet + manifest.json
+  keep_days: 400                   # then deleted, unless the run is evidence for a release decision
+clickhouse:
+  path: data/clickhouse
+  database: aae
+  hot_days: 90                     # TTL: older partitions leave the hot store; the archive still has them
+pins: reports/releases             # release decisions list the run ids they rest on; those runs are never pruned

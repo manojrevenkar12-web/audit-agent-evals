@@ -1,0 +1,17 @@
+# Seeded-defect datasets. Each split is reproducible from its seed range: same seeds, same PDFs, same truth.
+splits:
+  dev:       { first_seed: 1000, packages: 160 }   # for building agents and choosing thresholds
+  test:      { first_seed: 5000, packages: 160 }   # for quality gates; never used to tune
+  llm:       { first_seed: 9000, packages: 24 }    # small sample for the paid LLM agent runs
+  unit:      { first_seed: 100, packages: 16 }     # built by the test suite
+fiscal_year: 2026
+defects_per_package: { 0: 0.25, 1: 0.35, 2: 0.25, 3: 0.15 }   # a quarter of packages are clean
+defect_kinds:   # relative frequency
+  casting: 1.0
+  tie: 1.0
+  prior_year: 1.0
+  narrative: 1.0
+  missing_disclosure: 0.7
+  period: 0.5
+restatement_rate: 0.2   # packages with a disclosed, correct restatement of comparatives (a decoy)
+scanned_rate: 0.2       # packages whose current report has no text layer, only page images

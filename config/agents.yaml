@@ -1,0 +1,48 @@
+# Review agents and their variants. A variant is a release: the evaluation compares it with the agent it
+# would replace, on the same packages, and the quality gates (config/gates.yaml) decide.
+production: baseline        # the release every candidate is compared with
+agents:
+  baseline:
+    kind: rules
+    version: 3
+    description: Reads the text layer; rounding-aware sums; reads the restatement note.
+    settings:
+      rounding: aware            # aware: allow up to 0.5 TEUR per shown amount; strict: no difference allowed
+      rounding_per_line: 0.5
+      restatements: read         # read: a difference equal to the disclosed reclassification is not an error
+      checks: [casting, tie, prior_year, narrative, missing_disclosure, period]
+  baseline-strict:
+    kind: rules
+    version: 4
+    description: Candidate that treats every difference as an error (no rounding tolerance).
+    base: baseline
+    settings: { rounding: strict, rounding_per_line: 0.5, restatements: read,
+                checks: [casting, tie, prior_year, narrative, missing_disclosure, period] }
+  baseline-literal:
+    kind: rules
+    version: 4
+    description: Candidate that ignores the restatement note and flags every changed comparative.
+    base: baseline
+    settings: { rounding: aware, rounding_per_line: 0.5, restatements: ignore,
+                checks: [casting, tie, prior_year, narrative, missing_disclosure, period] }
+  baseline-no-ties:
+    kind: rules
+    version: 4
+    description: Candidate from a refactor that dropped the cross-statement checks (a regression to catch).
+    base: baseline
+    settings: { rounding: aware, rounding_per_line: 0.5, restatements: read,
+                checks: [casting, prior_year, narrative, missing_disclosure, period] }
+  claude-haiku:
+    kind: llm
+    version: 1
+    description: Claude Haiku reads both PDFs (text and scans) with the review prompt.
+    model: haiku
+    prompt: prompts/review_v1.md
+    max_budget_usd: 1.0
+  claude-sonnet:
+    kind: llm
+    version: 1
+    description: Claude Sonnet reads both PDFs (text and scans) with the review prompt.
+    model: sonnet
+    prompt: prompts/review_v1.md
+    max_budget_usd: 2.0

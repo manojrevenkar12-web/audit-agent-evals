@@ -1,0 +1,92 @@
+[
+ {
+  "name": "run_id",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "evaluation run: agent, split, answers"
+ },
+ {
+  "name": "day",
+  "type": "DATE",
+  "mode": "REQUIRED",
+  "description": "day the run was recorded"
+ },
+ {
+  "name": "agent",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "name@version"
+ },
+ {
+  "name": "split",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "dataset split"
+ },
+ {
+  "name": "package",
+  "type": "STRING",
+  "mode": "REQUIRED",
+  "description": "package id"
+ },
+ {
+  "name": "recorded_at",
+  "type": "TIMESTAMP",
+  "mode": "REQUIRED",
+  "description": "when the run was recorded"
+ },
+ {
+  "name": "error",
+  "type": "STRING",
+  "mode": "NULLABLE",
+  "description": "agent error, if any"
+ },
+ {
+  "name": "findings",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "findings returned"
+ },
+ {
+  "name": "defects",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "seeded defects in the package"
+ },
+ {
+  "name": "found",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "defects found"
+ },
+ {
+  "name": "pages_read",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "pages with a text layer or read by the model"
+ },
+ {
+  "name": "pages_unreadable",
+  "type": "INT64",
+  "mode": "REQUIRED",
+  "description": "pages the agent could not read"
+ },
+ {
+  "name": "scanned",
+  "type": "BOOL",
+  "mode": "REQUIRED",
+  "description": "the package contains a scanned report"
+ },
+ {
+  "name": "cost_usd",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "model cost"
+ },
+ {
+  "name": "latency_ms",
+  "type": "FLOAT64",
+  "mode": "REQUIRED",
+  "description": "wall time of the agent's steps"
+ }
+]
